@@ -1,0 +1,78 @@
+export const users = [
+  {
+    id: 'u_ana',
+    name: 'Ana Fischer',
+    initials: 'AF',
+    type: 'orbital',
+    role: 'Cmdt. — ISS Expedição 71',
+    location: 'ISS · Módulo Columbus',
+    bio: 'Comandante a 408 km de altitude. Documentando a Terra de cima, um orbital por vez.',
+    gamification: {
+      level: 12,
+      title: 'Exploradora Orbital',
+      xp: 8420,
+      xpToNext: 10000,
+      reputation: 2310,
+      rank: 1,
+      badges: ['b_first_orbit', 'b_earth_eye', 'b_climate_watch', 'b_veteran'],
+    },
+  },
+  {
+    id: 'u_marcos',
+    name: 'Marcos Oliveira',
+    initials: 'MO',
+    type: 'terrestrial',
+    role: 'Observador de campo',
+    location: 'Cuiabá, MT · Brasil',
+    bio: 'Jornalismo cidadão e monitoramento ambiental no Centro-Oeste. Confirmo do chão o que vocês veem do céu.',
+    gamification: {
+      level: 7,
+      title: 'Sentinela Terrestre',
+      xp: 3150,
+      xpToNext: 4000,
+      reputation: 980,
+      rank: 14,
+      badges: ['b_ground_truth', 'b_climate_watch'],
+    },
+  },
+  {
+    id: 'u_kenji',
+    name: 'Kenji Tanaka',
+    initials: 'KT',
+    type: 'orbital',
+    role: 'Cientista — JAXA',
+    location: 'ISS · Módulo Kibo',
+    bio: 'Pesquisa oceanográfica em microgravidade. Sensoriamento remoto do Pacífico.',
+    gamification: {
+      level: 10,
+      title: 'Explorador Orbital',
+      xp: 6700,
+      xpToNext: 8000,
+      reputation: 1750,
+      rank: 3,
+      badges: ['b_first_orbit', 'b_ocean_data', 'b_veteran'],
+    },
+  },
+  {
+    id: 'u_you',
+    name: 'Você',
+    initials: 'VC',
+    type: 'terrestrial',
+    role: 'Novo observador',
+    location: 'São Paulo · Brasil',
+    bio: 'Começando minha jornada no ASTRALIS.',
+    gamification: {
+      level: 2,
+      title: 'Recruta Terrestre',
+      xp: 240,
+      xpToNext: 500,
+      reputation: 45,
+      rank: 1208,
+      badges: ['b_welcome'],
+    },
+  },
+]
+
+export const currentUser = users.find((u) => u.id === 'u_you')
+
+export const getUserById = (id) => users.find((u) => u.id === id)

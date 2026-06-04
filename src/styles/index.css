@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Space+Grotesk:wght@400;600;700&family=Space+Mono&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-void:    #0D0720;
+  --color-nebula:  #1A0F3A;
+  --color-cosmos:  #B28FFF;
+  --color-aurora:  #FF78CA;
+  --color-reentry: #FF9F5A;
+  --color-terra:   #6EDFA0;
+
+  --font-display: "Nunito", sans-serif;
+  --font-sans:    "Space Grotesk", sans-serif;
+  --font-mono:    "Space Mono", monospace;
+}
+
+body {
+  background-color: var(--color-void);
+  color: white;
+  font-family: var(--font-sans);
+}
+
+@utility bg-astralis-gradient {
+  background-image: linear-gradient(90deg, #B28FFF, #FF78CA, #FF9F5A);
+}
