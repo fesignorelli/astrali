@@ -12,14 +12,18 @@ const loadFeed = () => {
     const raw = localStorage.getItem(FEED_KEY)
     if (!raw) return null
     return JSON.parse(raw)
-  } catch {
+  } catch (error) {
+    console.warn('Não foi possível carregar o feed do localStorage:', error)
     return null
   }
 }
+
 const saveFeed = (data) => {
   try {
     localStorage.setItem(FEED_KEY, JSON.stringify(data))
-  } catch {}
+  } catch (error) {
+    console.warn('Não foi possível salvar o feed no localStorage:', error)
+  }
 }
 
 export function AppProvider({ children }) {

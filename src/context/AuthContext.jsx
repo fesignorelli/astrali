@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback } from 'react'
 
 const AuthContext = createContext(null)
 
@@ -13,6 +13,7 @@ const read = (key, fallback) => {
     return fallback
   }
 }
+
 const write = (key, value) => {
   try {
     localStorage.setItem(key, JSON.stringify(value))
@@ -32,31 +33,35 @@ const defaultGamification = () => ({
   likesReceived: 0,
 })
 
-const normalizeUser = (u) => {
-  if (!u) return u
+const normalizeUser = (user) => {
+  if (!user) return user
+
   return {
-    ...u,
-    type: u.type || 'terrestrial',
-    initials: u.initials || (u.name ? u.name.slice(0, 2).toUpperCase() : 'VC'),
-    gamification: { ...defaultGamification(), ...(u.gamification || {}) },
+    ...user,
+    type: user.type || 'terrestrial',
+    initials: user.initials || (user.name ? user.name.slice(0, 2).toUpperCase() : 'VC'),
+    gamification: {
+      ...defaultGamification(),
+      ...(user.gamification || {}),
+    },
   }
 }
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null)
-  const [ready, setReady] = useState(false)
-
-  useEffect(() => {
+  const [user, setUser] = useState(() => {
     const session = read(SESSION_KEY, null)
-    if (session) setUser(normalizeUser(session))
-    setReady(true)
-  }, [])
+    return session ? normalizeUser(session) : null
+  })
+
+  const ready = true
 
   const signup = useCallback(({ name, email, password, type }) => {
     const users = read(USERS_KEY, {})
+
     if (users[email]) {
       return { ok: false, error: 'Já existe uma conta com esse e-mail.' }
     }
+
     const newUser = {
       id: `u_${Date.now()}`,
       name,
@@ -78,21 +83,33 @@ export function AuthProvider({ children }) {
         likesReceived: 0,
       },
     }
+
     users[email] = newUser
+
     write(USERS_KEY, users)
     write(SESSION_KEY, newUser)
     setUser(newUser)
+
     return { ok: true }
   }, [])
 
   const login = useCallback(({ email, password }) => {
     const users = read(USERS_KEY, {})
     const found = users[email]
-    if (!found) return { ok: false, error: 'Conta não encontrada.' }
-    if (found.password !== password) return { ok: false, error: 'Senha incorreta.' }
-    const norm = normalizeUser(found)
-    write(SESSION_KEY, norm)
-    setUser(norm)
+
+    if (!found) {
+      return { ok: false, error: 'Conta não encontrada.' }
+    }
+
+    if (found.password !== password) {
+      return { ok: false, error: 'Senha incorreta.' }
+    }
+
+    const normalizedUser = normalizeUser(found)
+
+    write(SESSION_KEY, normalizedUser)
+    setUser(normalizedUser)
+
     return { ok: true }
   }, [])
 
@@ -102,27 +119,44 @@ export function AuthProvider({ children }) {
     } catch {
       /* ignora */
     }
+
     setUser(null)
   }, [])
 
   const updateUser = useCallback((updater) => {
     setUser((prev) => {
       if (!prev) return prev
+
       const next = typeof updater === 'function' ? updater(prev) : { ...prev, ...updater }
+
       write(SESSION_KEY, next)
+
       const users = read(USERS_KEY, {})
       users[next.email] = next
       write(USERS_KEY, users)
+
       return next
     })
   }, [])
 
-  const value = { user, ready, signup, login, logout, updateUser }
+  const value = {
+    user,
+    ready,
+    signup,
+    login,
+    logout,
+    updateUser,
+  }
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
 export function useAuth() {
   const ctx = useContext(AuthContext)
-  if (!ctx) throw new Error('useAuth deve ser usado dentro de <AuthProvider>')
+
+  if (!ctx) {
+    throw new Error('useAuth deve ser usado dentro de <AuthProvider>')
+  }
+
   return ctx
 }
