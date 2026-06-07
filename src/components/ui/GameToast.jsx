@@ -12,9 +12,24 @@ export default function GameToast({ toasts, onDismiss }) {
 }
 
 const THEME = {
-  xp:    { icon: 'Zap',        glow: 'rgba(178,143,255,0.45)', ring: 'rgba(178,143,255,0.5)', text: 'text-cosmos' },
-  level: { icon: 'TrendingUp', glow: 'rgba(255,120,202,0.5)',  ring: 'rgba(255,120,202,0.55)', text: 'text-aurora' },
-  badge: { icon: 'Award',      glow: 'rgba(255,159,90,0.5)',   ring: 'rgba(255,159,90,0.55)', text: 'text-reentry' },
+  xp: {
+    icon: 'Zap',
+    glow: 'rgba(178,143,255,0.45)',
+    ring: 'rgba(178,143,255,0.5)',
+    text: 'text-cosmos',
+  },
+  level: {
+    icon: 'TrendingUp',
+    glow: 'rgba(255,120,202,0.5)',
+    ring: 'rgba(255,120,202,0.55)',
+    text: 'text-aurora',
+  },
+  badge: {
+    icon: 'Award',
+    glow: 'rgba(255,159,90,0.5)',
+    ring: 'rgba(255,159,90,0.55)',
+    text: 'text-reentry',
+  },
 }
 
 function ToastItem({ toast, onDismiss }) {
@@ -24,7 +39,11 @@ function ToastItem({ toast, onDismiss }) {
     const t0 = requestAnimationFrame(() => setPhase('shown'))
     const t1 = setTimeout(() => setPhase('leave'), 3400)
     const t2 = setTimeout(() => onDismiss(toast.id), 3800)
-    return () => { cancelAnimationFrame(t0); clearTimeout(t1); clearTimeout(t2) }
+    return () => {
+      cancelAnimationFrame(t0)
+      clearTimeout(t1)
+      clearTimeout(t2)
+    }
   }, [toast.id, onDismiss])
 
   const theme = THEME[toast.type] ?? THEME.xp
@@ -41,9 +60,11 @@ function ToastItem({ toast, onDismiss }) {
         border: `1px solid ${theme.ring}`,
         boxShadow: `0 8px 32px rgba(0,0,0,0.45), 0 0 24px ${theme.glow}, inset 0 1px 0 rgba(255,255,255,0.12)`,
         transform:
-          phase === 'enter' ? 'translateX(120%) scale(0.95)'
-          : phase === 'leave' ? 'translateX(120%) scale(0.95)'
-          : 'translateX(0) scale(1)',
+          phase === 'enter'
+            ? 'translateX(120%) scale(0.95)'
+            : phase === 'leave'
+              ? 'translateX(120%) scale(0.95)'
+              : 'translateX(0) scale(1)',
         opacity: phase === 'shown' ? 1 : 0,
         transition: 'transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease',
       }}

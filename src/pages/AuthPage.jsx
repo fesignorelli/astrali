@@ -47,7 +47,10 @@ export default function AuthPage({ onAuthed }) {
             {['signup', 'login'].map((m) => (
               <button
                 key={m}
-                onClick={() => { setMode(m); setError('') }}
+                onClick={() => {
+                  setMode(m)
+                  setError('')
+                }}
                 className={`flex-1 rounded-lg py-2 text-sm font-medium transition
                   ${mode === m ? 'bg-cosmos/20 text-cosmos' : 'text-white/50 hover:text-white'}`}
               >
@@ -58,10 +61,27 @@ export default function AuthPage({ onAuthed }) {
 
           <div className="space-y-4">
             {mode === 'signup' && (
-              <Field label="Nome" value={form.name} onChange={set('name')} placeholder="Como quer ser chamado?" />
+              <Field
+                label="Nome"
+                value={form.name}
+                onChange={set('name')}
+                placeholder="Como quer ser chamado?"
+              />
             )}
-            <Field label="E-mail" type="email" value={form.email} onChange={set('email')} placeholder="voce@astralis.space" />
-            <Field label="Senha" type="password" value={form.password} onChange={set('password')} placeholder="••••••••" />
+            <Field
+              label="E-mail"
+              type="email"
+              value={form.email}
+              onChange={set('email')}
+              placeholder="voce@astralis.space"
+            />
+            <Field
+              label="Senha"
+              type="password"
+              value={form.password}
+              onChange={set('password')}
+              placeholder="••••••••"
+            />
 
             {/* escolha de tipo (só no cadastro) */}
             {mode === 'signup' && (
@@ -73,12 +93,18 @@ export default function AuthPage({ onAuthed }) {
                   <TypeOption
                     active={form.type === 'orbital'}
                     onClick={() => setForm((f) => ({ ...f, type: 'orbital' }))}
-                    icon={Rocket} label="Astronauta" sub="Em órbita" color="cosmos"
+                    icon={Rocket}
+                    label="Astronauta"
+                    sub="Em órbita"
+                    color="cosmos"
                   />
                   <TypeOption
                     active={form.type === 'terrestrial'}
                     onClick={() => setForm((f) => ({ ...f, type: 'terrestrial' }))}
-                    icon={Globe2} label="Terráqueo" sub="Na Terra" color="terra"
+                    icon={Globe2}
+                    label="Terráqueo"
+                    sub="Na Terra"
+                    color="terra"
                   />
                 </div>
               </div>
@@ -128,11 +154,12 @@ function TypeOption({ active, onClick, icon: Icon, label, sub, color }) {
       onClick={onClick}
       aria-pressed={active}
       className={`flex flex-col items-center gap-1 rounded-xl border p-4 transition
-        ${active
-          ? `border-${color} bg-${color}/15`
-          : 'border-white/15 hover:border-white/30'}`}
+        ${active ? `border-${color} bg-${color}/15` : 'border-white/15 hover:border-white/30'}`}
     >
-      <Icon className={`h-6 w-6 ${active ? `text-${color}` : 'text-white/60'}`} aria-hidden="true" />
+      <Icon
+        className={`h-6 w-6 ${active ? `text-${color}` : 'text-white/60'}`}
+        aria-hidden="true"
+      />
       <span className="text-sm font-semibold text-white">{label}</span>
       <span className="font-mono text-[10px] text-white/40">{sub}</span>
     </button>

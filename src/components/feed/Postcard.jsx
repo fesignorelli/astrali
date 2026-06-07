@@ -15,11 +15,14 @@ export default function PostCard({ post, onLike }) {
   const { user } = useAuth()
   const [showComments, setShowComments] = useState(false)
 
-  const author =
-    getUserById(post.authorId) ||
+  const author = getUserById(post.authorId) ||
     post.author ||
-    (user && user.id === post.authorId ? user : null) ||
-    { name: 'Explorador', initials: '??', type: 'orbital', location: 'ASTRALIS' }
+    (user && user.id === post.authorId ? user : null) || {
+      name: 'Explorador',
+      initials: '??',
+      type: 'orbital',
+      location: 'ASTRALIS',
+    }
 
   const postComments = comments[post.id] || []
   const isSaved = saved.includes(post.id)
@@ -38,13 +41,18 @@ export default function PostCard({ post, onLike }) {
       </header>
 
       {post.media && (
-        <div className="mt-4"><PostMedia media={post.media} /></div>
+        <div className="mt-4">
+          <PostMedia media={post.media} />
+        </div>
       )}
 
       <p className="mt-4 leading-relaxed text-white/90">
         {post.text}{' '}
         {post.ods?.map((n) => (
-          <span key={n} className={`ml-1 inline-block rounded-md border px-1.5 py-0.5 align-middle font-mono text-[10px] ${odsColor(n)}`}>
+          <span
+            key={n}
+            className={`ml-1 inline-block rounded-md border px-1.5 py-0.5 align-middle font-mono text-[10px] ${odsColor(n)}`}
+          >
             ODS {n}
           </span>
         ))}
@@ -64,10 +72,7 @@ export default function PostCard({ post, onLike }) {
       </div>
 
       {showComments && (
-        <CommentSection
-          comments={postComments}
-          onAdd={(text) => addComment(post.id, text)}
-        />
+        <CommentSection comments={postComments} onAdd={(text) => addComment(post.id, text)} />
       )}
     </Card>
   )

@@ -3,8 +3,14 @@ import { Heart, MessageCircle, Share2, Bookmark, Check } from 'lucide-react'
 import { formatCount } from '../../lib/format'
 
 export default function PostActions({
-  postId, likes, comments, liked, saved,
-  onLike, onToggleComments, onSave,
+  postId,
+  likes,
+  comments,
+  liked,
+  saved,
+  onLike,
+  onToggleComments,
+  onSave,
 }) {
   const [copied, setCopied] = useState(false)
 

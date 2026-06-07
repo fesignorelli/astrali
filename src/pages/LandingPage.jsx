@@ -15,9 +15,15 @@ export default function LandingPage({ onEnter }) {
           ASTRALIS
         </span>
         <nav className="hidden gap-7 text-sm text-white/70 md:flex">
-          <a href="#features" className="hover:text-white">Diferenciais</a>
-          <a href="#globe" className="hover:text-white">Mapa orbital</a>
-          <button onClick={onEnter} className="hover:text-white">Entrar</button>
+          <a href="#features" className="hover:text-white">
+            Diferenciais
+          </a>
+          <a href="#globe" className="hover:text-white">
+            Mapa orbital
+          </a>
+          <button onClick={onEnter} className="hover:text-white">
+            Entrar
+          </button>
         </nav>
       </header>
 
@@ -25,21 +31,25 @@ export default function LandingPage({ onEnter }) {
         <div>
           <h1 className="font-display text-5xl font-black leading-tight md:text-6xl">
             Onde o espaço encontra a{' '}
-            <span className="bg-astralis-gradient bg-clip-text text-transparent">Terra</span>
-            {' '}— em tempo real.
+            <span className="bg-astralis-gradient bg-clip-text text-transparent">Terra</span> — em
+            tempo real.
           </h1>
           <p className="mt-6 max-w-xl leading-relaxed text-white/70">
-            ASTRALIS conecta astronautas, cientistas e habitantes da Terra através de
-            transmissões com fotos, geolocalização orbital e dados ambientais — uma ponte
-            entre quem observa de cima e quem vive embaixo.
+            ASTRALIS conecta astronautas, cientistas e habitantes da Terra através de transmissões
+            com fotos, geolocalização orbital e dados ambientais — uma ponte entre quem observa de
+            cima e quem vive embaixo.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button variant="primary" size="lg" onClick={onEnter}>
               Explorar transmissões
             </Button>
-            <Button variant="secondary" size="lg" onClick={() => {
-              document.getElementById('globe')?.scrollIntoView({ behavior: 'smooth' })
-            }}>
+            <Button
+              variant="secondary"
+              size="lg"
+              onClick={() => {
+                document.getElementById('globe')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+            >
               Ver mapa orbital
             </Button>
           </div>
@@ -72,22 +82,31 @@ export default function LandingPage({ onEnter }) {
 
       {/* features */}
       <section id="features" className="px-[8%] py-16">
-        <h2 className="mb-8 font-display text-3xl font-black">
-          O que torna o ASTRALIS diferente?
-        </h2>
+        <h2 className="mb-8 font-display text-3xl font-black">O que torna o ASTRALIS diferente?</h2>
         <div className="grid gap-5 md:grid-cols-3">
-          <Feature icon={Satellite} title="Transmissões com contexto"
-            text="Cada registro carrega geolocalização, dados climáticos e informações da missão — não só uma foto." />
-          <Feature icon={Globe2} title="Mapa orbital em tempo real"
-            text="Acompanhe a posição real da ISS e veja qual parte da Terra está sendo observada agora." />
-          <Feature icon={Users} title="Ponte Terra–espaço"
-            text="Pessoas no solo respondem com relatos locais, confirmando do chão o que se vê do alto." />
+          <Feature
+            icon={Satellite}
+            title="Transmissões com contexto"
+            text="Cada registro carrega geolocalização, dados climáticos e informações da missão — não só uma foto."
+          />
+          <Feature
+            icon={Globe2}
+            title="Mapa orbital em tempo real"
+            text="Acompanhe a posição real da ISS e veja qual parte da Terra está sendo observada agora."
+          />
+          <Feature
+            icon={Users}
+            title="Ponte Terra–espaço"
+            text="Pessoas no solo respondem com relatos locais, confirmando do chão o que se vê do alto."
+          />
         </div>
       </section>
 
       <section id="globe" className="px-[8%] pb-24">
         <h2 className="mb-2 font-display text-3xl font-black">Mapa orbital ao vivo</h2>
-        <p className="mb-6 text-sm text-white/50">Posição real da ISS, atualizada a cada 5 segundos.</p>
+        <p className="mb-6 text-sm text-white/50">
+          Posição real da ISS, atualizada a cada 5 segundos.
+        </p>
 
         <div className="relative overflow-hidden rounded-3xl border border-white/15">
           <CesiumGlobe onData={handleData} />
@@ -99,7 +118,10 @@ export default function LandingPage({ onEnter }) {
             <DataRow label="Latitude" value={iss ? `${iss.latitude.toFixed(2)}°` : '—'} />
             <DataRow label="Longitude" value={iss ? `${iss.longitude.toFixed(2)}°` : '—'} />
             <DataRow label="Altitude" value={iss ? `${iss.altitude} km` : '—'} />
-            <DataRow label="Velocidade" value={iss ? `${iss.velocity.toLocaleString('pt-BR')} km/h` : '—'} />
+            <DataRow
+              label="Velocidade"
+              value={iss ? `${iss.velocity.toLocaleString('pt-BR')} km/h` : '—'}
+            />
           </div>
         </div>
 

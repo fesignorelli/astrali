@@ -3,11 +3,11 @@
 
 // XP concedido por ação
 export const XP_RULES = {
-  transmit: 50,        // criar um post
-  receiveLike: 5,      // alguém curtiu seu post
-  giveLike: 2,         // você curtiu alguém
-  dailyLogin: 20,      // primeiro acesso do dia
-  streakBonus: 10,     // por dia consecutivo (multiplicado pelo streak)
+  transmit: 50, // criar um post
+  receiveLike: 5, // alguém curtiu seu post
+  giveLike: 2, // você curtiu alguém
+  dailyLogin: 20, // primeiro acesso do dia
+  streakBonus: 10, // por dia consecutivo (multiplicado pelo streak)
 }
 
 // Curva de nível: XP necessário para ATINGIR o nível n (acumulado).
@@ -58,7 +58,11 @@ export const BADGE_UNLOCKS = {
 export function evaluateBadges(stats) {
   return Object.entries(BADGE_UNLOCKS)
     .filter(([, cond]) => {
-      try { return cond(stats) } catch { return false }
+      try {
+        return cond(stats)
+      } catch {
+        return false
+      }
     })
     .map(([id]) => id)
 }

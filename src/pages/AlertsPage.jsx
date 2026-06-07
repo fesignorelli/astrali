@@ -24,9 +24,7 @@ export default function AlertsPage() {
         <h1 className="bg-astralis-gradient bg-clip-text font-display text-4xl font-black text-transparent">
           Alertas
         </h1>
-        <p className="mt-1 text-sm text-white/50">
-          Suas conquistas e progresso no ASTRALIS
-        </p>
+        <p className="mt-1 text-sm text-white/50">Suas conquistas e progresso no ASTRALIS</p>
       </header>
 
       {alerts.length > 0 ? (
@@ -36,7 +34,9 @@ export default function AlertsPage() {
             return (
               <li key={a.id}>
                 <Card className="flex items-center gap-4 p-4">
-                  <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-nebula/40 ${cls}`}>
+                  <span
+                    className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-nebula/40 ${cls}`}
+                  >
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <div className="min-w-0 flex-1">

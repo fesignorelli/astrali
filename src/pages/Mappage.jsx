@@ -48,13 +48,33 @@ export default function MapPage() {
       </div>
 
       <Card className="p-4">
-        <svg viewBox="0 0 400 320" className="w-full" role="img" aria-label="Mapa de usuários em órbita e no solo, com a ISS em tempo real">
+        <svg
+          viewBox="0 0 400 320"
+          className="w-full"
+          role="img"
+          aria-label="Mapa de usuários em órbita e no solo, com a ISS em tempo real"
+        >
           {[...Array(50)].map((_, i) => (
-            <circle key={i} cx={(i * 71) % 400} cy={(i * 43) % 320} r={(i % 3) * 0.4 + 0.3}
-              fill="white" opacity={0.2 + (i % 4) * 0.15} />
+            <circle
+              key={i}
+              cx={(i * 71) % 400}
+              cy={(i * 43) % 320}
+              r={(i % 3) * 0.4 + 0.3}
+              fill="white"
+              opacity={0.2 + (i % 4) * 0.15}
+            />
           ))}
 
-          <ellipse cx="200" cy="160" rx="140" ry="90" fill="none" stroke="#B28FFF" strokeOpacity="0.3" strokeDasharray="4 4" />
+          <ellipse
+            cx="200"
+            cy="160"
+            rx="140"
+            ry="90"
+            fill="none"
+            stroke="#B28FFF"
+            strokeOpacity="0.3"
+            strokeDasharray="4 4"
+          />
 
           {/* Terra */}
           <circle cx="200" cy="160" r="55" fill="#1A0F3A" stroke="#6EDFA0" strokeOpacity="0.4" />
@@ -68,7 +88,16 @@ export default function MapPage() {
             return (
               <g key={u.id}>
                 <circle cx={x} cy={y} r="9" fill="#6EDFA0" />
-                <text x={x} y={y + 3} textAnchor="middle" fontSize="7" fill="#0D0720" fontWeight="bold">{u.initials}</text>
+                <text
+                  x={x}
+                  y={y + 3}
+                  textAnchor="middle"
+                  fontSize="7"
+                  fill="#0D0720"
+                  fontWeight="bold"
+                >
+                  {u.initials}
+                </text>
               </g>
             )
           })}
@@ -79,7 +108,16 @@ export default function MapPage() {
             return (
               <g key={u.id}>
                 <circle cx={x} cy={y} r="11" fill="#B28FFF" />
-                <text x={x} y={y + 3} textAnchor="middle" fontSize="8" fill="#0D0720" fontWeight="bold">{u.initials}</text>
+                <text
+                  x={x}
+                  y={y + 3}
+                  textAnchor="middle"
+                  fontSize="8"
+                  fill="#0D0720"
+                  fontWeight="bold"
+                >
+                  {u.initials}
+                </text>
               </g>
             )
           })}
@@ -88,7 +126,16 @@ export default function MapPage() {
           <g style={{ transition: 'all 1s linear' }}>
             <circle cx={issX} cy={issY} r="16" fill="#FF78CA" opacity="0.25" />
             <circle cx={issX} cy={issY} r="9" fill="#FF78CA" />
-            <text x={issX} y={issY + 3} textAnchor="middle" fontSize="7" fill="#0D0720" fontWeight="bold">ISS</text>
+            <text
+              x={issX}
+              y={issY + 3}
+              textAnchor="middle"
+              fontSize="7"
+              fill="#0D0720"
+              fontWeight="bold"
+            >
+              ISS
+            </text>
           </g>
         </svg>
         <p className="mt-2 text-center font-mono text-[10px] text-white/40">
@@ -119,8 +166,12 @@ function StatusPill({ status }) {
   }
   const s = map[status] ?? map.loading
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${s.cls}`}>
-      <span className={`h-1.5 w-1.5 rounded-full ${s.dot} ${status === 'live' ? 'animate-pulse' : ''}`} />
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${s.cls}`}
+    >
+      <span
+        className={`h-1.5 w-1.5 rounded-full ${s.dot} ${status === 'live' ? 'animate-pulse' : ''}`}
+      />
       {s.text}
     </span>
   )

@@ -17,9 +17,9 @@ import SavedPage from './pages/SavedPage'
 
 function Shell() {
   const { user, ready } = useAuth()
-  const [stage, setStage] = useState('landing') 
+  const [stage, setStage] = useState('landing')
   const [active, setActive] = useState('Feed')
-  const [menuOpen, setMenuOpen] = useState(false) 
+  const [menuOpen, setMenuOpen] = useState(false)
 
   if (!ready) return <div className="min-h-screen bg-void" />
 
@@ -36,40 +36,45 @@ function Shell() {
 
   const renderPage = () => {
     switch (active) {
-      case 'Mapa': return <MapPage />
-      case 'Galeria': return <GalleryPage />
-      case 'Missões': return <MissionsPage />
-      case 'Perfil': return <ProfilePage user={user} />
-      case 'Alertas': return <AlertsPage />
-      case 'Salvos': return <SavedPage />
-      default: return <FeedPage />
+      case 'Mapa':
+        return <MapPage />
+      case 'Galeria':
+        return <GalleryPage />
+      case 'Missões':
+        return <MissionsPage />
+      case 'Perfil':
+        return <ProfilePage user={user} />
+      case 'Alertas':
+        return <AlertsPage />
+      case 'Salvos':
+        return <SavedPage />
+      default:
+        return <FeedPage />
     }
   }
 
   return (
-  <AppWithToasts>
-    <div className="min-h-screen bg-void text-white">
-      <div className="fixed left-0 top-0 z-50 w-full">
-        <Topbar active={active} onNavigate={navigate} onMenu={() => setMenuOpen(true)} />
+    <AppWithToasts>
+      <div className="min-h-screen bg-void text-white">
+        <div className="fixed left-0 top-0 z-50 w-full">
+          <Topbar active={active} onNavigate={navigate} onMenu={() => setMenuOpen(true)} />
+        </div>
+
+        <div className="flex pt-20">
+          <Sidebar
+            active={active}
+            onNavigate={navigate}
+            open={menuOpen}
+            onClose={() => setMenuOpen(false)}
+          />
+
+          <main className="min-w-0 flex-1 px-4 py-8 md:ml-[22.5rem] md:px-8">{renderPage()}</main>
+
+          {showRail && <RightRail />}
+        </div>
       </div>
-
-      <div className="flex pt-20">
-        <Sidebar
-          active={active}
-          onNavigate={navigate}
-          open={menuOpen}
-          onClose={() => setMenuOpen(false)}
-        />
-
-        <main className="min-w-0 flex-1 px-4 py-8 md:ml-[22.5rem] md:px-8">
-          {renderPage()}
-        </main>
-
-        {showRail && <RightRail />}
-      </div>
-    </div>
-  </AppWithToasts>
-)
+    </AppWithToasts>
+  )
 }
 
 function AppWithToasts({ children }) {

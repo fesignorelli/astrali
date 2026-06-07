@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Space+Grotesk:wght@400;600;700&family=Space+Mono&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --color-void:    #0D0720;
-  --color-nebula:  #1A0F3A;
-  --color-cosmos:  #B28FFF;
-  --color-aurora:  #FF78CA;
-  --color-reentry: #FF9F5A;
-  --color-terra:   #6EDFA0;
+  --color-void: #0d0720;
+  --color-nebula: #1a0f3a;
+  --color-cosmos: #b28fff;
+  --color-aurora: #ff78ca;
+  --color-reentry: #ff9f5a;
+  --color-terra: #6edfa0;
 
-  --font-display: "Nunito", sans-serif;
-  --font-sans:    "Space Grotesk", sans-serif;
-  --font-mono:    "Space Mono", monospace;
+  --font-display: 'Nunito', sans-serif;
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
 }
 
 body {
@@ -21,5 +21,5 @@ body {
 }
 
 @utility bg-astralis-gradient {
-  background-image: linear-gradient(90deg, #B28FFF, #FF78CA, #FF9F5A);
+  background-image: linear-gradient(90deg, #b28fff, #ff78ca, #ff9f5a);
 }

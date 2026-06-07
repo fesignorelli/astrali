@@ -69,7 +69,9 @@ export default function MissionsPage() {
                 </div>
 
                 <div className="mt-4">
-                  <Button variant="secondary" size="sm">Acompanhar missão</Button>
+                  <Button variant="secondary" size="sm">
+                    Acompanhar missão
+                  </Button>
                 </div>
               </Card>
             </li>

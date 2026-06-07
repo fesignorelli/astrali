@@ -40,11 +40,11 @@ export default function Sidebar({ active = 'Feed', onNavigate, open = false, onC
       )}
 
       <aside
-  className={`fixed left-0 top-20 bottom-0 z-40 flex w-90 flex-col gap-6 border-r border-white/10 bg-void p-4 transition-transform duration-300
+        className={`fixed left-0 top-20 bottom-0 z-40 flex w-90 flex-col gap-6 border-r border-white/10 bg-void p-4 transition-transform duration-300
     md:translate-x-0
     ${open ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
-  aria-hidden={!open ? undefined : false}
->
+        aria-hidden={!open ? undefined : false}
+      >
         <div className="flex items-center justify-between md:hidden">
           <span className="bg-astralis-gradient bg-clip-text font-display text-xl font-black text-transparent">
             ASTRALIS
@@ -71,9 +71,11 @@ export default function Sidebar({ active = 'Feed', onNavigate, open = false, onC
                       onClick={() => handleNavigate(label)}
                       aria-current={active === label ? 'page' : undefined}
                       className={`flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cosmos
-                        ${active === label
-                          ? 'bg-cosmos/15 text-cosmos'
-                          : 'text-white/70 hover:bg-white/5 hover:text-white'}`}
+                        ${
+                          active === label
+                            ? 'bg-cosmos/15 text-cosmos'
+                            : 'text-white/70 hover:bg-white/5 hover:text-white'
+                        }`}
                     >
                       <Icon className="h-5 w-5" aria-hidden="true" />
                       {label}

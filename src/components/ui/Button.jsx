@@ -3,8 +3,7 @@ const variants = {
     'bg-astralis-gradient text-white font-semibold hover:opacity-90 border border-transparent',
   secondary:
     'bg-transparent text-white border border-white/20 hover:border-white/40 hover:bg-white/5',
-  ghost:
-    'bg-transparent text-white/70 border border-transparent hover:text-white hover:bg-white/5',
+  ghost: 'bg-transparent text-white/70 border border-transparent hover:text-white hover:bg-white/5',
 }
 
 const sizes = {

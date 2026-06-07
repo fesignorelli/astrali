@@ -36,13 +36,20 @@ export default function ProfilePage({ user }) {
         <div className="h-24 bg-astralis-gradient opacity-80" aria-hidden="true" />
         <div className="px-6 pb-6">
           <div className="-mt-10 flex items-end gap-4">
-            <Avatar initials={user.initials} type={user.type} size="lg" className="ring-4 ring-void" />
+            <Avatar
+              initials={user.initials}
+              type={user.type}
+              size="lg"
+              className="ring-4 ring-void"
+            />
             <div className="flex-1 pb-1">
               <div className="flex flex-wrap items-center gap-2">
                 <h1 className="font-display text-2xl font-black text-white">{user.name}</h1>
                 <UserTag type={user.type} />
               </div>
-              <p className="font-mono text-xs text-white/50">{user.role} · {user.location}</p>
+              <p className="font-mono text-xs text-white/50">
+                {user.role} · {user.location}
+              </p>
             </div>
           </div>
 
@@ -68,10 +75,16 @@ export default function ProfilePage({ user }) {
             </div>
             <div
               className="mt-2 h-2 w-full overflow-hidden rounded-full bg-white/10"
-              role="progressbar" aria-valuenow={lvl.pct} aria-valuemin={0} aria-valuemax={100}
+              role="progressbar"
+              aria-valuenow={lvl.pct}
+              aria-valuemin={0}
+              aria-valuemax={100}
               aria-label={`Progresso de XP: ${lvl.pct}%`}
             >
-              <div className="h-full bg-astralis-gradient transition-all duration-700" style={{ width: `${lvl.pct}%` }} />
+              <div
+                className="h-full bg-astralis-gradient transition-all duration-700"
+                style={{ width: `${lvl.pct}%` }}
+              />
             </div>
           </div>
 

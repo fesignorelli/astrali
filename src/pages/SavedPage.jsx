@@ -13,7 +13,8 @@ export default function SavedPage() {
           Salvos
         </h1>
         <p className="mt-1 text-sm text-white/50">
-          {savedPosts.length} {savedPosts.length === 1 ? 'transmissão salva' : 'transmissões salvas'}
+          {savedPosts.length}{' '}
+          {savedPosts.length === 1 ? 'transmissão salva' : 'transmissões salvas'}
         </p>
       </header>
 

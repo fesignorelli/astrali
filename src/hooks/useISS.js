@@ -72,7 +72,9 @@ export function usePeopleInSpace() {
         })
       })
       .catch(() => {})
-    return () => { alive = false }
+    return () => {
+      alive = false
+    }
   }, [])
 
   return people

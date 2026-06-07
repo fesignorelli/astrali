@@ -12,9 +12,7 @@ export default function FeedPage() {
         <h1 className="bg-astralis-gradient bg-clip-text font-display text-4xl font-black text-transparent">
           Feed
         </h1>
-        <p className="mt-1 text-sm text-white/50">
-          {posts.length} registros orbitais e terrestres
-        </p>
+        <p className="mt-1 text-sm text-white/50">{posts.length} registros orbitais e terrestres</p>
       </header>
 
       <div className="mb-5">

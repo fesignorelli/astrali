@@ -13,11 +13,7 @@ export default function PostMedia({ media }) {
         role="img"
         aria-label={media.caption ?? (isOrbital ? 'Imagem orbital' : 'Imagem terrestre')}
       >
-        {isOrbital ? (
-          <OrbitalScene />
-        ) : (
-          <TerrestrialScene />
-        )}
+        {isOrbital ? <OrbitalScene /> : <TerrestrialScene />}
 
         {media.geo && (
           <span className="absolute bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-void/70 px-3 py-1 font-mono text-[10px] text-white/70 backdrop-blur">
@@ -25,9 +21,7 @@ export default function PostMedia({ media }) {
           </span>
         )}
       </div>
-      {media.caption && (
-        <figcaption className="sr-only">{media.caption}</figcaption>
-      )}
+      {media.caption && <figcaption className="sr-only">{media.caption}</figcaption>}
     </figure>
   )
 }

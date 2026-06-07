@@ -2,8 +2,8 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 
 const AuthContext = createContext(null)
 
-const USERS_KEY = 'astralis:users'    
-const SESSION_KEY = 'astralis:session' 
+const USERS_KEY = 'astralis:users'
+const SESSION_KEY = 'astralis:session'
 
 const read = (key, fallback) => {
   try {
@@ -14,7 +14,11 @@ const read = (key, fallback) => {
   }
 }
 const write = (key, value) => {
-  try { localStorage.setItem(key, JSON.stringify(value)) } catch { /* ignora */ }
+  try {
+    localStorage.setItem(key, JSON.stringify(value))
+  } catch {
+    /* ignora */
+  }
 }
 
 const defaultGamification = () => ({
@@ -58,7 +62,7 @@ export function AuthProvider({ children }) {
       name,
       email,
       password,
-      type,    
+      type,
       initials: name.trim().slice(0, 2).toUpperCase() || 'VC',
       location: type === 'orbital' ? 'ISS · Órbita' : 'Terra',
       role: type === 'orbital' ? 'Novo astronauta' : 'Novo observador',
@@ -93,7 +97,11 @@ export function AuthProvider({ children }) {
   }, [])
 
   const logout = useCallback(() => {
-    try { localStorage.removeItem(SESSION_KEY) } catch { /* ignora */ }
+    try {
+      localStorage.removeItem(SESSION_KEY)
+    } catch {
+      /* ignora */
+    }
     setUser(null)
   }, [])
 
