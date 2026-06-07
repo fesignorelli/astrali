@@ -3,8 +3,6 @@ import UserTag from '../components/ui/UserTag'
 import { users } from '../data/users'
 import { useISS } from '../hooks/useISS'
 
-// MapPage — mapa orbital. A ISS usa posição REAL (wheretheiss.at);
-// os demais usuários são mockados. SVG puro, sem libs de mapa.
 export default function MapPage() {
   const { iss, status } = useISS(5000)
   const orbital = users.filter((u) => u.type === 'orbital')
@@ -23,7 +21,7 @@ export default function MapPage() {
     const angle = (i / total) * Math.PI * 2 + Math.PI / 3
     return { x: 200 + Math.cos(angle) * 140, y: 160 + Math.sin(angle) * 90 }
   }
-  const otherOrbital = orbital.slice(1) // a 1ª (Ana) vira a ISS ao vivo
+  const otherOrbital = orbital.slice(1)
 
   return (
     <section className="mx-auto w-full max-w-3xl">
