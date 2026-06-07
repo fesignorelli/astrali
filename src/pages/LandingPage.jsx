@@ -4,15 +4,12 @@ import Card from '../components/ui/Card'
 import CesiumGlobe from '../components/map/CesiumGlobe'
 import { Satellite, Globe2, Users } from 'lucide-react'
 
-// LandingPage — porta de entrada do ASTRALIS. Hero + diferenciais + globo real.
-// onEnter() leva o usuário para o app (Feed).
 export default function LandingPage({ onEnter }) {
   const [iss, setIss] = useState(null)
   const handleData = useCallback((data) => setIss(data), [])
 
   return (
     <div className="min-h-screen bg-void text-white">
-      {/* topo */}
       <header className="flex items-center justify-between px-[8%] py-6">
         <span className="bg-astralis-gradient bg-clip-text font-display text-2xl font-black tracking-tight text-transparent">
           ASTRALIS
@@ -24,7 +21,6 @@ export default function LandingPage({ onEnter }) {
         </nav>
       </header>
 
-      {/* hero */}
       <section className="grid items-center gap-10 px-[8%] py-16 md:grid-cols-2">
         <div>
           <h1 className="font-display text-5xl font-black leading-tight md:text-6xl">
@@ -49,7 +45,6 @@ export default function LandingPage({ onEnter }) {
           </div>
         </div>
 
-        {/* mini-preview do feed */}
         <Card className="mx-auto w-full max-w-sm p-5">
           <div className="mb-4 flex items-center justify-between">
             <span className="font-display font-bold">Feed orbital</span>
@@ -90,7 +85,6 @@ export default function LandingPage({ onEnter }) {
         </div>
       </section>
 
-      {/* globo */}
       <section id="globe" className="px-[8%] pb-24">
         <h2 className="mb-2 font-display text-3xl font-black">Mapa orbital ao vivo</h2>
         <p className="mb-6 text-sm text-white/50">Posição real da ISS, atualizada a cada 5 segundos.</p>
@@ -98,7 +92,6 @@ export default function LandingPage({ onEnter }) {
         <div className="relative overflow-hidden rounded-3xl border border-white/15">
           <CesiumGlobe onData={handleData} />
 
-          {/* painel de dados sobre o globo */}
           <div className="absolute left-6 top-6 w-60 rounded-2xl border border-white/15 bg-void/70 p-4 backdrop-blur">
             <h3 className="mb-3 font-mono text-xs uppercase tracking-widest text-cosmos">
               ISS · ao vivo

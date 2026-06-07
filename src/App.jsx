@@ -1,34 +1,37 @@
 import { useState } from 'react'
-import { AppProvider } from './context/AppContext'
+import { AuthProvider, useAuth } from './context/AuthContext'
+import { AppProvider, useApp } from './context/AppContext'
 import LandingPage from './pages/LandingPage'
+import AuthPage from './pages/AuthPage'
 import Topbar from './components/layout/Topbar'
 import Sidebar from './components/layout/Sidebar'
 import RightRail from './components/layout/RightRail'
+import GameToast from './components/ui/GameToast'
 import FeedPage from './pages/FeedPage'
 import MapPage from './pages/MapPage'
 import GalleryPage from './pages/GalleryPage'
 import MissionsPage from './pages/MissionsPage'
 import ProfilePage from './pages/ProfilePage'
-import { currentUser } from './data/users'
+import AlertsPage from './pages/AlertsPage'
+import SavedPage from './pages/SavedPage'
 
-function App() {
-  const [entered, setEntered] = useState(false) // false = landing, true = app
+function Shell() {
+  const { user, ready } = useAuth()
+  const [stage, setStage] = useState('landing') 
   const [active, setActive] = useState('Feed')
+  const [menuOpen, setMenuOpen] = useState(false) 
+
+  if (!ready) return <div className="min-h-screen bg-void" />
+
+  if (!user) {
+    if (stage === 'landing') return <LandingPage onEnter={() => setStage('auth')} />
+    return <AuthPage onAuthed={() => setActive('Feed')} />
+  }
 
   const navigate = (label) => {
     const map = { 'Mapa Orbital': 'Mapa' }
     setActive(map[label] ?? label)
   }
-
-  // landing é a primeira tela
-  if (!entered) {
-    return (
-      <AppProvider>
-        <LandingPage onEnter={() => setEntered(true)} />
-      </AppProvider>
-    )
-  }
-
   const showRail = active === 'Feed'
 
   const renderPage = () => {
@@ -36,26 +39,59 @@ function App() {
       case 'Mapa': return <MapPage />
       case 'Galeria': return <GalleryPage />
       case 'Missões': return <MissionsPage />
-      case 'Perfil': return <ProfilePage user={currentUser} />
-      case 'Feed':
+      case 'Perfil': return <ProfilePage user={user} />
+      case 'Alertas': return <AlertsPage />
+      case 'Salvos': return <SavedPage />
       default: return <FeedPage />
     }
   }
 
   return (
-    <AppProvider>
-      <div className="min-h-screen bg-void text-white">
-        <Topbar active={active} onNavigate={navigate} />
-        <div className="mx-auto flex max-w-[1400px]">
-          <Sidebar active={active} onNavigate={navigate} />
-          <main className="min-w-0 flex-1 px-4 py-8 md:px-8">
-            {renderPage()}
-          </main>
-          {showRail && <RightRail />}
-        </div>
+  <AppWithToasts>
+    <div className="min-h-screen bg-void text-white">
+      <div className="fixed left-0 top-0 z-50 w-full">
+        <Topbar active={active} onNavigate={navigate} onMenu={() => setMenuOpen(true)} />
       </div>
-    </AppProvider>
+
+      <div className="flex pt-20">
+        <Sidebar
+          active={active}
+          onNavigate={navigate}
+          open={menuOpen}
+          onClose={() => setMenuOpen(false)}
+        />
+
+        <main className="min-w-0 flex-1 px-4 py-8 md:ml-[22.5rem] md:px-8">
+          {renderPage()}
+        </main>
+
+        {showRail && <RightRail />}
+      </div>
+    </div>
+  </AppWithToasts>
+)
+}
+
+function AppWithToasts({ children }) {
+  return (
+    <>
+      {children}
+      <ToastLayer />
+    </>
   )
 }
 
-export default App
+function ToastLayer() {
+  const { toasts, dismissToast } = useApp()
+  return <GameToast toasts={toasts} onDismiss={dismissToast} />
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppProvider>
+        <Shell />
+      </AppProvider>
+    </AuthProvider>
+  )
+}
