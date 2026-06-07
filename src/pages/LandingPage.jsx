@@ -80,7 +80,6 @@ export default function LandingPage({ onEnter }) {
         </Card>
       </section>
 
-      {/* features */}
       <section id="features" className="px-[8%] py-16">
         <h2 className="mb-8 font-display text-3xl font-black">O que torna o ASTRALIS diferente?</h2>
         <div className="grid gap-5 md:grid-cols-3">
