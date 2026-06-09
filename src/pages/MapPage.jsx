@@ -8,7 +8,6 @@ export default function MapPage() {
   const orbital = users.filter((u) => u.type === 'orbital')
   const terrestrial = users.filter((u) => u.type === 'terrestrial')
 
-  // mapeia a longitude real da ISS (-180..180) para um ângulo na órbita
   const issAngle = ((iss.longitude + 180) / 360) * Math.PI * 2 - Math.PI / 2
   const issX = 200 + Math.cos(issAngle) * 140
   const issY = 160 + Math.sin(issAngle) * 90
@@ -37,7 +36,6 @@ export default function MapPage() {
         <StatusPill status={status} />
       </header>
 
-      {/* dados reais da ISS */}
       <div className="mb-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <DataCard label="Latitude" value={`${iss.latitude.toFixed(2)}°`} />
         <DataCard label="Longitude" value={`${iss.longitude.toFixed(2)}°`} />
@@ -74,13 +72,11 @@ export default function MapPage() {
             strokeDasharray="4 4"
           />
 
-          {/* Terra */}
           <circle cx="200" cy="160" r="55" fill="#1A0F3A" stroke="#6EDFA0" strokeOpacity="0.4" />
           <circle cx="185" cy="150" r="14" fill="#6EDFA0" opacity="0.5" />
           <circle cx="215" cy="172" r="10" fill="#6EDFA0" opacity="0.4" />
           <circle cx="200" cy="145" r="7" fill="#B28FFF" opacity="0.4" />
 
-          {/* terrestres */}
           {terrestrial.map((u, i) => {
             const { x, y } = groundPos(i, terrestrial.length)
             return (
@@ -100,7 +96,6 @@ export default function MapPage() {
             )
           })}
 
-          {/* outros orbitais (mock) */}
           {otherOrbital.map((u, i) => {
             const { x, y } = otherOrbitPos(i, otherOrbital.length)
             return (
@@ -120,7 +115,6 @@ export default function MapPage() {
             )
           })}
 
-          {/* ISS — posição REAL */}
           <g style={{ transition: 'all 1s linear' }}>
             <circle cx={issX} cy={issY} r="16" fill="#FF78CA" opacity="0.25" />
             <circle cx={issX} cy={issY} r="9" fill="#FF78CA" />

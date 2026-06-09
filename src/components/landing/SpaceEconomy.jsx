@@ -1,6 +1,5 @@
 import Reveal from '../ui/Reveal'
 
-// SpaceEconomy — contexto: por que uma rede social espacial faz sentido agora.
 const facts = [
   { stat: '+11.000', label: 'satélites ativos em órbita da Terra hoje' },
   { stat: 'US$ 1,8 tri', label: 'tamanho projetado da economia espacial até 2035' },
@@ -34,7 +33,7 @@ export default function SpaceEconomy() {
         <div className="grid gap-4">
           {facts.map((f, i) => (
             <Reveal key={f.label} delay={i * 120}>
-              <div className="rounded-2xl border border-white/10 bg-nebula/30 p-5 backdrop-blur-md">
+              <div className="rounded-2xl border border-white/10 bg-nebula p-5 backdrop-blur-md">
                 <p className="bg-astralis-gradient bg-clip-text font-display text-3xl font-black text-transparent">
                   {f.stat}
                 </p>

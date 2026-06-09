@@ -38,7 +38,7 @@ export default function AuthPage({ onAuthed }) {
           <img src="/astralis-logo.png" alt="ASTRALIS" className="h-20 w-auto" />
         </div>
         <p className="mb-8 text-center text-sm text-white/50">
-          onde o espaço encontra a Terra — em tempo real
+          Onde o espaço encontra a Terra em tempo real.
         </p>
 
         <Card className="p-6">
@@ -121,10 +121,6 @@ export default function AuthPage({ onAuthed }) {
             </Button>
           </div>
         </Card>
-
-        <p className="mt-4 text-center font-mono text-[10px] text-white/30">
-          Demo acadêmica — dados salvos localmente no seu navegador.
-        </p>
       </div>
     </div>
   )

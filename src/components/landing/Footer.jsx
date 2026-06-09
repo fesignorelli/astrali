@@ -4,13 +4,11 @@ export default function Footer({ onEnter }) {
   return (
     <footer className="border-t border-white/10 px-[8%] py-12">
       <div className="grid gap-10 md:grid-cols-4">
-        {/* marca */}
         <div className="md:col-span-2">
           <img src="/astralis-logo.png" alt="ASTRALIS" className="h-12 w-auto" />
 
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
-            Onde o espaço encontra a Terra — em tempo real. Uma rede social que conecta quem observa
-            de cima com quem vive embaixo.
+            Onde o espaço encontra a Terra em tempo real. Uma rede social que conecta quem observa de cima com quem vive embaixo.
           </p>
 
           <div className="mt-5 flex gap-3">

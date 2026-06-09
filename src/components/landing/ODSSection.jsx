@@ -1,7 +1,6 @@
 import Reveal from '../ui/Reveal'
 import { odsColor } from '../../lib/format'
 
-// ODSSection — conexão do ASTRALIS com os Objetivos de Desenvolvimento Sustentável.
 const odsList = [
   {
     number: 13,
@@ -39,7 +38,7 @@ export default function ODSSection() {
       <div className="mt-8 grid gap-5 md:grid-cols-3">
         {odsList.map((o, i) => (
           <Reveal key={o.number} delay={i * 120}>
-            <div className="h-full rounded-2xl border border-white/10 bg-nebula/30 p-6 backdrop-blur-md">
+            <div className="h-full rounded-2xl border border-white/10 bg-nebula p-6 backdrop-blur-md">
               <span
                 className={`grid h-12 w-12 place-items-center rounded-xl border font-display text-xl font-black ${odsColor(o.number)}`}
               >

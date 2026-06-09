@@ -1,7 +1,6 @@
 import Reveal from '../ui/Reveal'
 import { UserPlus, Radio, Heart, Trophy } from 'lucide-react'
 
-// HowItWorks — passo a passo de uso do ASTRALIS.
 const steps = [
   {
     icon: UserPlus,
@@ -38,7 +37,7 @@ export default function HowItWorks() {
       <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
           <Reveal key={s.title} delay={i * 120}>
-            <div className="relative h-full rounded-2xl border border-white/10 bg-nebula/30 p-6 backdrop-blur-md">
+            <div className="relative h-full rounded-2xl border border-white/10 bg-nebula p-6 backdrop-blur-md">
               <span className="absolute right-4 top-4 font-display text-3xl font-black text-white/10">
                 {i + 1}
               </span>
