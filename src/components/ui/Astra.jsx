@@ -10,26 +10,26 @@ export default function Astra({ onNavigate }) {
 
   useEffect(() => {
     let seen = false
-    try {
-      seen = localStorage.getItem(SEEN_KEY) === '1'
-    } catch {
-      /* ignora */
-    }
+    try { seen = localStorage.getItem(SEEN_KEY) === '1' } catch { /* ignora */ }
     if (!seen) setActive(true)
   }, [])
 
   useEffect(() => {
-    if (active && astraTour[step]) onNavigate?.(astraTour[step].page)
+    if (active && astraTour[step]) {
+      const cur = astraTour[step]
+      onNavigate?.(cur.page)
+      // se o passo pede para abrir o painel orbital, avisa o RightRail
+      if (cur.openPanel) {
+        window.dispatchEvent(new CustomEvent('astra:openPanel'))
+      }
+    }
   }, [active, step, onNavigate])
 
   const finish = () => {
     setActive(false)
     setStep(0)
-    try {
-      localStorage.setItem(SEEN_KEY, '1')
-    } catch {
-      /* ignora */
-    }
+    try { localStorage.setItem(SEEN_KEY, '1') } catch { /* ignora */ }
+    window.dispatchEvent(new CustomEvent('astra:closePanel'))
     onNavigate?.('Feed')
   }
 
@@ -37,20 +37,16 @@ export default function Astra({ onNavigate }) {
     if (step < astraTour.length - 1) setStep((s) => s + 1)
     else finish()
   }
-  const back = () => {
-    if (step > 0) setStep((s) => s - 1)
-  }
-  const startTour = () => {
-    setStep(0)
-    setActive(true)
-  }
+  const back = () => { if (step > 0) setStep((s) => s - 1) }
+  const startTour = () => { setStep(0); setActive(true) }
 
+  // ---- BOTÃO (tour inativo) ----
   if (!active) {
     return (
       <button
         onClick={startTour}
         aria-label="Abrir tour com a ASTRA"
-        className="group fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-2xl rounded-br-sm border border-cosmos/30 px-4 py-3 shadow-xl transition hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-cosmos"
+        className="group fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-2xl rounded-br-sm border border-cosmos/30 px-3 py-2.5 shadow-xl transition hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-cosmos sm:px-4 sm:py-3"
         style={{
           background: 'linear-gradient(160deg, rgba(42,24,90,0.92), rgba(13,7,32,0.92))',
           backdropFilter: 'blur(16px)',
@@ -61,12 +57,11 @@ export default function Astra({ onNavigate }) {
         <span className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-full border border-cosmos/40 bg-nebula">
           <img src="/astra.png" alt="" className="h-full w-full object-cover object-top" />
         </span>
-
-        <span className="text-left">
+        {/* texto some em telas muito pequenas */}
+        <span className="hidden text-left sm:block">
           <span className="block font-display text-sm font-bold text-white">Precisa de ajuda?</span>
           <span className="block font-mono text-[10px] text-cosmos">Falar com a ASTRA</span>
         </span>
-
         <span className="relative ml-1 flex h-2.5 w-2.5">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-terra opacity-70" />
           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-terra" />
@@ -79,16 +74,22 @@ export default function Astra({ onNavigate }) {
   const isFirst = step === 0
   const isLast = step === astraTour.length - 1
 
+  // ---- TOUR ATIVO ----
   return (
     <>
-      <div className="pointer-events-none fixed inset-0 z-40 bg-void/30" aria-hidden="true" />
+      <div className="pointer-events-none fixed inset-0 z-40 bg-void/40" aria-hidden="true" />
 
-      <div className="fixed bottom-0 right-0 z-50 flex items-end justify-end gap-0 p-4 sm:p-6">
-        <div className="relative mb-6 mr-[-12px] w-[300px] max-w-[calc(100vw-11rem)] sm:w-[360px]">
+      {/*
+        MOBILE: balão centralizado embaixo, ASTRA pequena no canto.
+        DESKTOP (sm+): ASTRA grande + balão ao lado, no canto inferior direito.
+      */}
+      <div className="fixed inset-x-0 bottom-0 z-50 flex flex-col items-center gap-0 p-4 sm:inset-x-auto sm:right-0 sm:flex-row sm:items-end sm:justify-end sm:p-6">
+        {/* balão */}
+        <div className="relative order-2 w-full max-w-[340px] sm:order-1 sm:mb-6 sm:mr-[-12px] sm:w-[360px]">
           <div
             className="overflow-hidden rounded-3xl border border-cosmos/30"
             style={{
-              background: 'linear-gradient(160deg, rgba(42,24,90,0.92), rgba(13,7,32,0.92))',
+              background: 'linear-gradient(160deg, rgba(42,24,90,0.95), rgba(13,7,32,0.95))',
               backdropFilter: 'blur(16px)',
               WebkitBackdropFilter: 'blur(16px)',
               boxShadow: '0 16px 48px rgba(0,0,0,0.55), 0 0 40px rgba(178,143,255,0.25)',
@@ -144,21 +145,20 @@ export default function Astra({ onNavigate }) {
             </div>
           </div>
 
+          {/* ponteiro só no desktop */}
           <div
-            className="absolute bottom-8 right-[-9px] h-4 w-4 rotate-45 border-b border-r border-cosmos/30"
-            style={{ background: 'rgba(13,7,32,0.92)' }}
+            className="absolute bottom-8 right-[-9px] hidden h-4 w-4 rotate-45 border-b border-r border-cosmos/30 sm:block"
+            style={{ background: 'rgba(13,7,32,0.95)' }}
             aria-hidden="true"
           />
         </div>
 
+        {/* personagem — menor no mobile, grande no desktop */}
         <img
           src="/astra.png"
           alt="ASTRA, sua guia no ASTRALIS"
-          className="h-44 w-auto drop-shadow-2xl sm:h-60 md:h-72"
-          style={{
-            filter: 'drop-shadow(0 0 30px rgba(178,143,255,0.45))',
-            transform: 'scaleX(-1)',
-          }}
+          className="order-1 h-28 w-auto drop-shadow-2xl sm:order-2 sm:h-60 md:h-72"
+          style={{ filter: 'drop-shadow(0 0 30px rgba(178,143,255,0.45))', transform: 'scaleX(-1)' }}
         />
       </div>
     </>

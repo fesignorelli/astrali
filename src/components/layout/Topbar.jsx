@@ -35,10 +35,7 @@ export default function Topbar({ active = 'Feed', onNavigate, onMenu }) {
       </nav>
 
       <div className="ml-auto flex items-center gap-2 md:gap-3">
-        <Button variant="primary" size="sm" onClick={() => onNavigate?.('Feed')}>
-          <Plus className="h-4 w-4" aria-hidden="true" />
-          <span className="hidden sm:inline">Transmitir</span>
-        </Button>
+        
         {user && (
           <>
             <button
