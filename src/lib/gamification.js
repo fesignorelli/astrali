@@ -1,12 +1,12 @@
 export const MAX_LEVEL = 10
 
 export const XP_RULES = {
-  transmit: 50,     
-  receiveLike: 5,      
-  giveLike: 2,        
-  dailyLogin: 20,      
-  streakBonus: 10,   
-  completeMission: 120, 
+  transmit: 50,
+  receiveLike: 5,
+  giveLike: 2,
+  dailyLogin: 20,
+  streakBonus: 10,
+  completeMission: 120,
 }
 
 export function xpForLevel(level) {
@@ -66,7 +66,11 @@ export const BADGE_UNLOCKS = {
 export function evaluateBadges(stats) {
   return Object.entries(BADGE_UNLOCKS)
     .filter(([, cond]) => {
-      try { return cond(stats) } catch { return false }
+      try {
+        return cond(stats)
+      } catch {
+        return false
+      }
     })
     .map(([id]) => id)
 }

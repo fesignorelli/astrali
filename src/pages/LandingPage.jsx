@@ -271,4 +271,4 @@ function DataRow({ label, value }) {
       <p className="font-display font-bold text-white">{value}</p>
     </div>
   )
-} 
+}

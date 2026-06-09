@@ -87,11 +87,7 @@ export default function MissionsPage() {
                       Missão concluída
                     </span>
                   ) : (
-                    <Button
-                      variant="primary"
-                      size="sm"
-                      onClick={() => completeMission(m.id)}
-                    >
+                    <Button variant="primary" size="sm" onClick={() => completeMission(m.id)}>
                       Concluir missão
                     </Button>
                   )}

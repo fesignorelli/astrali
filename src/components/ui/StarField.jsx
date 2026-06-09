@@ -31,11 +31,11 @@ export default function StarField() {
         }
       })
 
-      const colors = ['178,143,255', '255,120,202', '110,223,160'] 
+      const colors = ['178,143,255', '255,120,202', '110,223,160']
       particles = Array.from({ length: partCount }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        r: Math.random() * 3 + 2, 
+        r: Math.random() * 3 + 2,
         vy: -(Math.random() * 0.2 + 0.04),
         vx: (Math.random() - 0.5) * 0.1,
         alpha: Math.random() * 0.4 + 0.2,

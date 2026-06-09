@@ -120,10 +120,10 @@ export const astraTour = [
     text: 'Aqui à direita você acompanha os ODS em destaque, as missões ativas e as tendências do momento. No celular, ele abre como um painel.',
   },
   {
-  page: 'Mapa Orbital',
-  title: 'Mapa Orbital ao vivo',
-  text: 'Acompanhe a posição REAL da Estação Espacial Internacional, atualizada a cada 5 segundos via satélite. Não é simulação!',
-},
+    page: 'Mapa Orbital',
+    title: 'Mapa Orbital ao vivo',
+    text: 'Acompanhe a posição REAL da Estação Espacial Internacional, atualizada a cada 5 segundos via satélite. Não é simulação!',
+  },
   {
     page: 'Missões',
     title: 'Explorador de Missões',

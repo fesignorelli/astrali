@@ -61,7 +61,8 @@ body {
 }
 
 @keyframes astra-float {
-  0%, 100% {
+  0%,
+  100% {
     transform: scaleX(-1) translateY(0);
   }
   50% {
@@ -80,7 +81,8 @@ body {
 }
 
 @keyframes astra-bob {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -133,5 +135,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .astra-enter, .bubble-pop { animation: none; }
+  .astra-enter,
+  .bubble-pop {
+    animation: none;
+  }
 }

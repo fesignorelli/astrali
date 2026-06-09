@@ -12,7 +12,7 @@ const FALLBACK = {
 
 export function useISS(intervalMs = 5000) {
   const [data, setData] = useState(FALLBACK)
-  const [status, setStatus] = useState('loading') 
+  const [status, setStatus] = useState('loading')
   useEffect(() => {
     let alive = true
 

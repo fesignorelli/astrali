@@ -247,7 +247,10 @@ function TypeOption({ active, onClick, icon: Icon, label, sub, color }) {
       className={`flex flex-col items-center gap-1 rounded-xl border p-4 transition
         ${active ? activeClasses[color] : 'border-white/15 hover:border-white/30'}`}
     >
-      <Icon className={`h-6 w-6 ${active ? iconClasses[color] : 'text-white/60'}`} aria-hidden="true" />
+      <Icon
+        className={`h-6 w-6 ${active ? iconClasses[color] : 'text-white/60'}`}
+        aria-hidden="true"
+      />
 
       <span className="text-sm font-semibold text-white">{label}</span>
       <span className="font-mono text-[10px] text-white/40">{sub}</span>

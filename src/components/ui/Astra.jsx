@@ -11,7 +11,9 @@ export default function Astra({ onNavigate }) {
 
   useEffect(() => {
     let seen = false
-    try { seen = localStorage.getItem(SEEN_KEY) === '1' } catch { }
+    try {
+      seen = localStorage.getItem(SEEN_KEY) === '1'
+    } catch {}
     if (!seen) setActive(true)
   }, [])
 
@@ -36,7 +38,9 @@ export default function Astra({ onNavigate }) {
   const finish = () => {
     setActive(false)
     setStep(0)
-    try { localStorage.setItem(SEEN_KEY, '1') } catch {  }
+    try {
+      localStorage.setItem(SEEN_KEY, '1')
+    } catch {}
     window.dispatchEvent(new CustomEvent('astra:closePanel'))
     onNavigate?.('Feed')
   }
@@ -45,8 +49,13 @@ export default function Astra({ onNavigate }) {
     if (step < astraTour.length - 1) setStep((s) => s + 1)
     else finish()
   }
-  const back = () => { if (step > 0) setStep((s) => s - 1) }
-  const startTour = () => { setStep(0); setActive(true) }
+  const back = () => {
+    if (step > 0) setStep((s) => s - 1)
+  }
+  const startTour = () => {
+    setStep(0)
+    setActive(true)
+  }
 
   const celebrationBubble = celebration && (
     <div className="fixed bottom-0 right-0 z-[60] flex items-end justify-end p-4 sm:p-6">
@@ -119,7 +128,9 @@ export default function Astra({ onNavigate }) {
             <img src="/astra.png" alt="" className="h-full w-full object-cover object-top" />
           </span>
           <span className="hidden text-left sm:block">
-            <span className="block font-display text-sm font-bold text-white">Precisa de ajuda?</span>
+            <span className="block font-display text-sm font-bold text-white">
+              Precisa de ajuda?
+            </span>
             <span className="block font-mono text-[10px] text-cosmos">Falar com a ASTRA</span>
           </span>
           <span className="relative ml-1 flex h-2.5 w-2.5">

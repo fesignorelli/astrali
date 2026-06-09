@@ -20,12 +20,7 @@ import SavedPage from './pages/SavedPage'
 function Shell() {
   const { user, ready } = useAuth()
 
-  const {
-    astraOpen,
-    setAstraOpen,
-    astraMessage,
-    setAstraMessage,
-  } = useApp()
+  const { astraOpen, setAstraOpen, astraMessage, setAstraMessage } = useApp()
 
   const [stage, setStage] = useState('landing')
   const [active, setActive] = useState('Feed')
@@ -44,31 +39,31 @@ function Shell() {
 
   const showRail = active === 'Feed'
 
-const renderPage = () => {
-  switch (active) {
-    case 'Mapa':
-    case 'Mapa Orbital':
-      return <MapPage />
+  const renderPage = () => {
+    switch (active) {
+      case 'Mapa':
+      case 'Mapa Orbital':
+        return <MapPage />
 
-    case 'Galeria':
-      return <GalleryPage />
+      case 'Galeria':
+        return <GalleryPage />
 
-    case 'Missões':
-      return <MissionsPage />
+      case 'Missões':
+        return <MissionsPage />
 
-    case 'Perfil':
-      return <ProfilePage user={user} />
+      case 'Perfil':
+        return <ProfilePage user={user} />
 
-    case 'Alertas':
-      return <AlertsPage />
+      case 'Alertas':
+        return <AlertsPage />
 
-    case 'Salvos':
-      return <SavedPage />
+      case 'Salvos':
+        return <SavedPage />
 
-    default:
-      return <FeedPage />
+      default:
+        return <FeedPage />
+    }
   }
-}
 
   return (
     <AppWithToasts>
@@ -85,9 +80,7 @@ const renderPage = () => {
             onClose={() => setMenuOpen(false)}
           />
 
-          <main className="min-w-0 flex-1 px-4 py-8 md:ml-[22.5rem] md:px-8">
-            {renderPage()}
-          </main>
+          <main className="min-w-0 flex-1 px-4 py-8 md:ml-[22.5rem] md:px-8">{renderPage()}</main>
 
           {showRail && <RightRail />}
         </div>

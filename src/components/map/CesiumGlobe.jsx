@@ -172,32 +172,30 @@ export default function CesiumGlobe({ onData, users = [], showMyLocation = false
   }, [onData, users, showMyLocation])
 
   return (
-  <div className="relative h-[600px] w-full">
-    <div ref={containerRef} className="h-full w-full" />
+    <div className="relative h-[600px] w-full">
+      <div ref={containerRef} className="h-full w-full" />
 
-    {status === 'loading' && (
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-void/80 backdrop-blur-sm">
-        <div className="relative mb-4 h-16 w-16">
-          <div className="absolute inset-0 rounded-full border-2 border-cosmos/20" />
-          <div className="absolute inset-0 animate-spin rounded-full border-2 border-transparent border-t-cosmos border-r-aurora" />
-          <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-aurora shadow-[0_0_20px_rgba(255,120,202,0.8)]" />
+      {status === 'loading' && (
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-void/80 backdrop-blur-sm">
+          <div className="relative mb-4 h-16 w-16">
+            <div className="absolute inset-0 rounded-full border-2 border-cosmos/20" />
+            <div className="absolute inset-0 animate-spin rounded-full border-2 border-transparent border-t-cosmos border-r-aurora" />
+            <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-aurora shadow-[0_0_20px_rgba(255,120,202,0.8)]" />
+          </div>
+
+          <p className="font-display text-sm font-bold text-white">Conectando ao Mapa Orbital</p>
+
+          <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-white/40">
+            Buscando posição da ISS em tempo real
+          </p>
         </div>
+      )}
 
-        <p className="font-display text-sm font-bold text-white">
-          Conectando ao Mapa Orbital
-        </p>
-
-        <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-white/40">
-          Buscando posição da ISS em tempo real
-        </p>
-      </div>
-    )}
-
-    {status === 'error' && (
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-void/80 px-3 py-1 font-mono text-[10px] text-reentry backdrop-blur">
-        ISS offline — usando última posição conhecida
-      </div>
-    )}
-  </div>
-)
+      {status === 'error' && (
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-void/80 px-3 py-1 font-mono text-[10px] text-reentry backdrop-blur">
+          ISS offline — usando última posição conhecida
+        </div>
+      )}
+    </div>
+  )
 }

@@ -7,7 +7,14 @@ export const astraKnowledge = [
   },
   {
     id: 'what_is',
-    keywords: ['o que é', 'que é astralis', 'sobre', 'plataforma', 'rede social', 'funciona o astralis'],
+    keywords: [
+      'o que é',
+      'que é astralis',
+      'sobre',
+      'plataforma',
+      'rede social',
+      'funciona o astralis',
+    ],
     answer:
       'O ASTRALIS é uma rede social que conecta quem está no espaço com quem está na Terra. Astronautas transmitem fotos, dados e descobertas em órbita, e pessoas no solo respondem com relatos locais — criando uma ponte entre o que se vê de cima e o que se vive embaixo.',
   },
@@ -25,13 +32,32 @@ export const astraKnowledge = [
   },
   {
     id: 'badges',
-    keywords: ['badge', 'conquista', 'medalha', 'desbloquear', 'troféu', 'trofeu', 'insígnia', 'insignia'],
+    keywords: [
+      'badge',
+      'conquista',
+      'medalha',
+      'desbloquear',
+      'troféu',
+      'trofeu',
+      'insígnia',
+      'insignia',
+    ],
     answer:
       'Conquistas são desbloqueadas automaticamente conforme você usa o ASTRALIS: sua primeira transmissão, sua décima curtida recebida, sua sequência de dias ativos... Cada uma aparece no seu Perfil e te notifica na hora. Já desbloqueou a "Primeira Órbita"?',
   },
   {
     id: 'map',
-    keywords: ['mapa', 'orbital', 'iss', 'localização', 'localizacao', 'geolocalização', 'satélite', 'satelite', 'tempo real'],
+    keywords: [
+      'mapa',
+      'orbital',
+      'iss',
+      'localização',
+      'localizacao',
+      'geolocalização',
+      'satélite',
+      'satelite',
+      'tempo real',
+    ],
     answer:
       'O Mapa Orbital mostra a posição REAL da Estação Espacial Internacional (ISS), atualizada a cada 5 segundos via dados de satélite ao vivo. Você vê latitude, longitude, altitude e velocidade reais — não é simulação!',
   },
