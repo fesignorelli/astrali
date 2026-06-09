@@ -70,7 +70,7 @@ function Shell() {
             onClose={() => setMenuOpen(false)}
           />
 
-          <main className="flex-1 px-4 py-8 md:px-8">{renderPage()}</main>
+          <main className="min-w-0 flex-1 px-4 py-8 md:ml-[22.5rem] md:px-8">{renderPage()}</main>
 
           {showRail && <RightRail />}
         </div>
@@ -78,7 +78,7 @@ function Shell() {
       <Astra onNavigate={navigate} />
     </AppWithToasts>
   )
-}
+}r
 
 function AppWithToasts({ children }) {
   return (
