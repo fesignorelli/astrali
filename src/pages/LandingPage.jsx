@@ -2,8 +2,10 @@ import { useState, useCallback } from 'react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import CesiumGlobe from '../components/map/CesiumGlobe'
-import { Satellite, Globe2, Users } from 'lucide-react'
+import { Satellite, Globe2, Users, Sparkles } from 'lucide-react'
 
+// LandingPage — porta de entrada do ASTRALIS. Hero + diferenciais + globo real.
+// onEnter() leva o usuário para o app (Feed).
 export default function LandingPage({ onEnter }) {
   const [iss, setIss] = useState(null)
   const handleData = useCallback((data) => setIss(data), [])
@@ -11,9 +13,7 @@ export default function LandingPage({ onEnter }) {
   return (
     <div className="min-h-screen bg-void text-white">
       <header className="flex items-center justify-between px-[8%] py-6">
-        <span className="bg-astralis-gradient bg-clip-text font-display text-2xl font-black tracking-tight text-transparent">
-          ASTRALIS
-        </span>
+        <img src="/astralis-logo.png" alt="ASTRALIS" className="h-15 w-auto" />
         <nav className="hidden gap-7 text-sm text-white/70 md:flex">
           <a href="#features" className="hover:text-white">
             Diferenciais
@@ -27,6 +27,7 @@ export default function LandingPage({ onEnter }) {
         </nav>
       </header>
 
+      {/* hero */}
       <section className="grid items-center gap-10 px-[8%] py-16 md:grid-cols-2">
         <div>
           <h1 className="font-display text-5xl font-black leading-tight md:text-6xl">
@@ -55,6 +56,7 @@ export default function LandingPage({ onEnter }) {
           </div>
         </div>
 
+        {/* mini-preview do feed */}
         <Card className="mx-auto w-full max-w-sm p-5">
           <div className="mb-4 flex items-center justify-between">
             <span className="font-display font-bold">Feed orbital</span>
@@ -80,6 +82,7 @@ export default function LandingPage({ onEnter }) {
         </Card>
       </section>
 
+      {/* features */}
       <section id="features" className="px-[8%] py-16">
         <h2 className="mb-8 font-display text-3xl font-black">O que torna o ASTRALIS diferente?</h2>
         <div className="grid gap-5 md:grid-cols-3">
@@ -98,6 +101,56 @@ export default function LandingPage({ onEnter }) {
             title="Ponte Terra–espaço"
             text="Pessoas no solo respondem com relatos locais, confirmando do chão o que se vê do alto."
           />
+        </div>
+      </section>
+
+      {/* ASTRA — banner da guia */}
+      <section className="px-[8%] py-16">
+        <div
+          className="relative grid items-center gap-6 overflow-hidden rounded-3xl border border-cosmos/30 md:grid-cols-2"
+          style={{
+            background: 'linear-gradient(135deg, rgba(42,24,90,0.6), rgba(13,7,32,0.4))',
+          }}
+        >
+          {/* brilho decorativo */}
+          <div
+            className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full opacity-40 blur-3xl"
+            style={{ background: 'radial-gradient(circle, #B28FFF, transparent 70%)' }}
+            aria-hidden="true"
+          />
+
+          {/* texto */}
+          <div className="relative px-12 py-5">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-cosmos/15 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-cosmos">
+              <Sparkles className="h-3 w-3" /> Sua guia
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-black md:text-4xl">
+              Conheça a{' '}
+              <span className="bg-astralis-gradient bg-clip-text text-transparent">ASTRA</span>
+            </h2>
+            <p className="mt-3 max-w-md leading-relaxed text-white/75">
+              Logo no primeiro acesso, a ASTRA te recebe e apresenta cada canto do ASTRALIS — do
+              feed ao mapa orbital. E sempre que precisar, ela está a um clique de distância para
+              tirar suas dúvidas sobre a plataforma.
+            </p>
+            <div className="mt-6">
+              <Button variant="primary" size="lg" onClick={onEnter}>
+                Conhecer com a ASTRA
+              </Button>
+            </div>
+          </div>
+
+          <div className="relative flex justify-center md:justify-end">
+            <img
+              src="/astra.png"
+              alt="ASTRA, a guia do ASTRALIS"
+              className="h-auto w-auto md:h-90"
+              style={{
+                filter: 'drop-shadow(0 0 40px rgba(178,143,255,0.45))',
+                transform: 'scaleX(-1)',
+              }}
+            />
+          </div>
         </div>
       </section>
 

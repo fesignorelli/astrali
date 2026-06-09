@@ -3,12 +3,16 @@ import MissionCard from '../mission/MissionCard'
 import ODSBadge from '../mission/ODSBadge'
 import { missions, ods } from '../../data/missions'
 import { trends } from '../../data/posts'
+import { Radar } from 'lucide-react'
 
-// RightRail — coluna direita: ODS em destaque, missões ativas e tendências.
 export default function RightRail() {
   return (
     <aside className="hidden w-80 shrink-0 flex-col gap-5 p-4 lg:flex" aria-label="Contexto">
-      {/* ODS em destaque */}
+      <div className="flex items-center gap-2 px-1">
+        <Radar className="h-5 w-5 text-cosmos" aria-hidden="true" />
+        <h2 className="font-display text-lg font-black text-white">Painel orbital</h2>
+      </div>
+
       <Card className="p-4">
         <h2 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-white/40">
           ODS em destaque
@@ -20,7 +24,6 @@ export default function RightRail() {
         </div>
       </Card>
 
-      {/* missões ativas */}
       <div>
         <h2 className="mb-3 px-1 font-mono text-[10px] uppercase tracking-widest text-white/40">
           Missões ativas
@@ -32,7 +35,6 @@ export default function RightRail() {
         </div>
       </div>
 
-      {/* tendências */}
       <Card className="p-4">
         <h2 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-white/40">
           Tendências

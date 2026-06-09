@@ -8,7 +8,7 @@ import { getBadges, badges as allBadges } from '../data/badges'
 import { useApp } from '../context/AppContext'
 import { getTypeStyle, formatCount } from '../lib/format'
 import { levelFromXP, titleForLevel } from '../lib/gamification'
-import { Rocket, Flame } from 'lucide-react'
+import { Rocket, Flame, MapPin } from 'lucide-react'
 
 export default function ProfilePage({ user }) {
   const { posts, toggleLike } = useApp()
@@ -31,11 +31,19 @@ export default function ProfilePage({ user }) {
   const lockedBadges = Object.values(allBadges).filter((b) => !g.badges.includes(b.id))
 
   return (
-    <section className="mx-auto w-full max-w-2xl">
+    <section className="mx-auto w-full">
       <Card className="overflow-hidden">
-        <div className="h-24 bg-astralis-gradient opacity-80" aria-hidden="true" />
-        <div className="px-6 pb-6">
-          <div className="-mt-10 flex items-end gap-4">
+        <div className="flex items-center gap-2 bg-astralis-gradient px-6 py-3">
+          <MapPin className="h-4 w-4 text-white" aria-hidden="true" />
+          <span className="font-mono  text-white">{user.location}</span>
+          <span className="ml-auto inline-flex items-center gap-1.5 font-mono text-[10px] text-white/90">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+            {user.type === 'orbital' ? 'EM ÓRBITA' : 'EM SOLO'}
+          </span>
+        </div>
+
+        <div className="px-6 pb-6 pt-6">
+          <div className="flex items-end gap-4">
             <Avatar
               initials={user.initials}
               type={user.type}
@@ -44,10 +52,10 @@ export default function ProfilePage({ user }) {
             />
             <div className="flex-1 pb-1">
               <div className="flex flex-wrap items-center gap-2">
-                <h1 className="font-display text-2xl font-black text-white">{user.name}</h1>
+                <p className="font-display font-black text-white">{user.name}</p>
                 <UserTag type={user.type} />
               </div>
-              <p className="font-mono text-xs text-white/50">
+              <p className="font-mono  text-white/50">
                 {user.role} · {user.location}
               </p>
             </div>
@@ -69,7 +77,7 @@ export default function ProfilePage({ user }) {
               <span className={`font-display text-sm font-bold ${style.text}`}>
                 Nível {lvl.level} · {title}
               </span>
-              <span className="font-mono text-xs text-white/50">
+              <span className="font-mono  text-white/50">
                 faltam {formatCount(lvl.xpToNext)} XP
               </span>
             </div>

@@ -18,9 +18,7 @@ export default function Topbar({ active = 'Feed', onNavigate, onMenu }) {
         <Menu className="h-5 w-5" />
       </button>
 
-      <span className="bg-astralis-gradient bg-clip-text font-display text-2xl font-black tracking-tight text-transparent">
-        ASTRALIS
-      </span>
+      <img src="/astralis-logo.png" alt="ASTRALIS" className="h-12 w-auto" />
 
       <nav className="hidden items-center gap-1 md:flex" aria-label="Navegação principal">
         {navItems.map((item) => (

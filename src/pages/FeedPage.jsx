@@ -2,17 +2,16 @@ import PostComposer from '../components/feed/PostComposer'
 import PostCard from '../components/feed/PostCard'
 import { useApp } from '../context/AppContext'
 
-// FeedPage — coluna central. Lê posts do contexto e repassa as ações.
 export default function FeedPage() {
   const { posts, toggleLike, addPost } = useApp()
 
   return (
-    <section className="mx-auto w-full max-w-2xl">
+    <section className="mx-auto w-full">
       <header className="mb-6">
-        <h1 className="bg-astralis-gradient bg-clip-text font-display text-4xl font-black text-transparent">
+        <h1 className="bg-astralis-gradient bg-clip-text font-display font-black text-transparent">
           Feed
         </h1>
-        <p className="mt-1 text-sm text-white/50">{posts.length} registros orbitais e terrestres</p>
+        <p className="mt-1 text-white/50">{posts.length} registros orbitais e terrestres</p>
       </header>
 
       <div className="mb-5">

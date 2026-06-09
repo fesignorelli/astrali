@@ -23,3 +23,11 @@ body {
 @utility bg-astralis-gradient {
   background-image: linear-gradient(90deg, #b28fff, #ff78ca, #ff9f5a);
 }
+
+h1 {
+  font-size: 60px;
+}
+
+p {
+  font-size: 16px;
+}

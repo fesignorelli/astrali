@@ -34,9 +34,9 @@ export default function AuthPage({ onAuthed }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-void px-4 text-white">
       <div className="w-full max-w-md">
-        <h1 className="mb-2 text-center bg-astralis-gradient bg-clip-text font-display text-4xl font-black text-transparent">
-          ASTRALIS
-        </h1>
+        <div className="mb-2 flex justify-center">
+          <img src="/astralis-logo.png" alt="ASTRALIS" className="h-20 w-auto" />
+        </div>
         <p className="mb-8 text-center text-sm text-white/50">
           onde o espaço encontra a Terra — em tempo real
         </p>

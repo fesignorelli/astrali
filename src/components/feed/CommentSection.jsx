@@ -15,7 +15,6 @@ export default function CommentSection({ comments = [], onAdd }) {
 
   return (
     <div className="mt-4 border-t border-white/10 pt-4">
-      {/* lista */}
       {comments.length > 0 && (
         <ul className="mb-4 space-y-3">
           {comments.map((c) => (
@@ -33,7 +32,6 @@ export default function CommentSection({ comments = [], onAdd }) {
         </ul>
       )}
 
-      {/* input */}
       {user && (
         <div className="flex items-center gap-2.5">
           <Avatar initials={user.initials} type={user.type} size="sm" />

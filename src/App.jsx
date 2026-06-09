@@ -7,6 +7,8 @@ import Topbar from './components/layout/Topbar'
 import Sidebar from './components/layout/Sidebar'
 import RightRail from './components/layout/RightRail'
 import GameToast from './components/ui/GameToast'
+import StarField from './components/ui/StarField'
+import Astra from './components/ui/Astra'
 import FeedPage from './pages/FeedPage'
 import MapPage from './pages/MapPage'
 import GalleryPage from './pages/GalleryPage'
@@ -21,7 +23,7 @@ function Shell() {
   const [active, setActive] = useState('Feed')
   const [menuOpen, setMenuOpen] = useState(false)
 
-  if (!ready) return <div className="min-h-screen bg-void" />
+  if (!ready) return <div className="min-h-screen" />
 
   if (!user) {
     if (stage === 'landing') return <LandingPage onEnter={() => setStage('auth')} />
@@ -55,7 +57,7 @@ function Shell() {
 
   return (
     <AppWithToasts>
-      <div className="min-h-screen bg-void text-white">
+      <div className="relative z-10 min-h-screen text-white">
         <div className="fixed left-0 top-0 z-50 w-full">
           <Topbar active={active} onNavigate={navigate} onMenu={() => setMenuOpen(true)} />
         </div>
@@ -73,6 +75,7 @@ function Shell() {
           {showRail && <RightRail />}
         </div>
       </div>
+      <Astra onNavigate={navigate} />
     </AppWithToasts>
   )
 }
@@ -95,6 +98,7 @@ export default function App() {
   return (
     <AuthProvider>
       <AppProvider>
+        <StarField />
         <Shell />
       </AppProvider>
     </AuthProvider>

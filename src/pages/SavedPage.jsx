@@ -7,7 +7,7 @@ export default function SavedPage() {
   const savedPosts = posts.filter((p) => saved.includes(p.id))
 
   return (
-    <section className="mx-auto w-full max-w-2xl">
+    <section className="mx-auto w-full">
       <header className="mb-6">
         <h1 className="bg-astralis-gradient bg-clip-text font-display text-4xl font-black text-transparent">
           Salvos
