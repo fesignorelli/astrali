@@ -8,7 +8,7 @@ export default function FeedPage() {
   return (
     <section className="mx-auto w-full">
       <header className="mb-6">
-        <h1 className="bg-astralis-gradient bg-clip-text font-display font-black text-transparent">
+        <h1 className="bg-astralis-gradient bg-clip-text font-display font-black text-transparent text-4xl">
           Feed
         </h1>
         <p className="mt-1 text-white/50">{posts.length} registros orbitais e terrestres</p>

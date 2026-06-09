@@ -55,6 +55,30 @@ export const badges = {
     tier: 'legendary',
     scope: 'orbital',
   },
+  b_first_mission: {
+    id: 'b_first_mission',
+    name: 'Primeira Missão',
+    description: 'Concluiu sua primeira missão no ASTRALIS.',
+    icon: 'Flag',
+    tier: 'common',
+    scope: 'any',
+  },
+  b_mission_specialist: {
+    id: 'b_mission_specialist',
+    name: 'Especialista de Missão',
+    description: 'Concluiu 2 missões.',
+    icon: 'Target',
+    tier: 'rare',
+    scope: 'any',
+  },
+  b_mission_commander: {
+    id: 'b_mission_commander',
+    name: 'Comandante de Missão',
+    description: 'Concluiu 3 missões — domínio total das operações.',
+    icon: 'Trophy',
+    tier: 'legendary',
+    scope: 'any',
+  },
 }
 
 export const getBadge = (id) => badges[id]

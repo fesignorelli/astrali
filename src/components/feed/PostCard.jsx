@@ -12,8 +12,6 @@ import { odsColor } from '../../lib/format'
 import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
 
-// PostCard — unidade do feed. Resolve autor (mock ou usuário logado),
-// integra curtir, comentar, salvar, compartilhar e apagar (só do próprio autor).
 export default function PostCard({ post, onLike }) {
   const { comments, saved, addComment, toggleSave, deletePost } = useApp()
   const { user } = useAuth()
@@ -45,7 +43,6 @@ export default function PostCard({ post, onLike }) {
         </div>
         <UserTag type={author.type} className="ml-auto" />
 
-        {/* apagar — só aparece nos posts do próprio usuário */}
         {isOwner && (
           <button
             onClick={() => setConfirmDelete(true)}
@@ -92,7 +89,6 @@ export default function PostCard({ post, onLike }) {
         <CommentSection comments={postComments} onAdd={(text) => addComment(post.id, text)} />
       )}
 
-      {/* confirmação de exclusão */}
       {confirmDelete && (
         <div className="mt-4 rounded-xl border border-reentry/30 bg-reentry/10 p-4">
           <p className="flex items-center gap-2 text-sm text-white">

@@ -1,29 +1,26 @@
+import { useCallback, useState } from 'react'
 import Card from '../components/ui/Card'
 import UserTag from '../components/ui/UserTag'
+import CesiumGlobe from '../components/map/CesiumGlobe'
 import { users } from '../data/users'
-import { useISS } from '../hooks/useISS'
 
 export default function MapPage() {
-  const { iss, status } = useISS(5000)
-  const orbital = users.filter((u) => u.type === 'orbital')
-  const terrestrial = users.filter((u) => u.type === 'terrestrial')
+  const [iss, setIss] = useState({
+    latitude: 0,
+    longitude: 0,
+    altitude: 0,
+    velocity: 0,
+  })
 
-  const issAngle = ((iss.longitude + 180) / 360) * Math.PI * 2 - Math.PI / 2
-  const issX = 200 + Math.cos(issAngle) * 140
-  const issY = 160 + Math.sin(issAngle) * 90
+  const [status, setStatus] = useState('loading')
 
-  const groundPos = (i, total) => {
-    const angle = (i / total) * Math.PI - Math.PI / 2
-    return { x: 200 + Math.cos(angle) * 55, y: 160 + Math.sin(angle) * 55 }
-  }
-  const otherOrbitPos = (i, total) => {
-    const angle = (i / total) * Math.PI * 2 + Math.PI / 3
-    return { x: 200 + Math.cos(angle) * 140, y: 160 + Math.sin(angle) * 90 }
-  }
-  const otherOrbital = orbital.slice(1)
+  const handleData = useCallback((data) => {
+    setIss(data)
+    setStatus('live')
+  }, [])
 
   return (
-    <section className="mx-auto w-full max-w-3xl">
+    <section className="mx-auto w-full max-w-5xl">
       <header className="mb-6 flex items-end justify-between">
         <div>
           <h1 className="bg-astralis-gradient bg-clip-text font-display text-4xl font-black text-transparent">
@@ -33,6 +30,7 @@ export default function MapPage() {
             Geolocalização em tempo real — {users.length} exploradores conectados
           </p>
         </div>
+
         <StatusPill status={status} />
       </header>
 
@@ -43,94 +41,10 @@ export default function MapPage() {
         <DataCard label="Velocidade" value={`${iss.velocity.toLocaleString('pt-BR')} km/h`} />
       </div>
 
-      <Card className="p-4">
-        <svg
-          viewBox="0 0 400 320"
-          className="w-full"
-          role="img"
-          aria-label="Mapa de usuários em órbita e no solo, com a ISS em tempo real"
-        >
-          {[...Array(50)].map((_, i) => (
-            <circle
-              key={i}
-              cx={(i * 71) % 400}
-              cy={(i * 43) % 320}
-              r={(i % 3) * 0.4 + 0.3}
-              fill="white"
-              opacity={0.2 + (i % 4) * 0.15}
-            />
-          ))}
+      <Card className="overflow-hidden p-0">
+        <CesiumGlobe users={users} showMyLocation onData={handleData} />
 
-          <ellipse
-            cx="200"
-            cy="160"
-            rx="140"
-            ry="90"
-            fill="none"
-            stroke="#B28FFF"
-            strokeOpacity="0.3"
-            strokeDasharray="4 4"
-          />
-
-          <circle cx="200" cy="160" r="55" fill="#1A0F3A" stroke="#6EDFA0" strokeOpacity="0.4" />
-          <circle cx="185" cy="150" r="14" fill="#6EDFA0" opacity="0.5" />
-          <circle cx="215" cy="172" r="10" fill="#6EDFA0" opacity="0.4" />
-          <circle cx="200" cy="145" r="7" fill="#B28FFF" opacity="0.4" />
-
-          {terrestrial.map((u, i) => {
-            const { x, y } = groundPos(i, terrestrial.length)
-            return (
-              <g key={u.id}>
-                <circle cx={x} cy={y} r="9" fill="#6EDFA0" />
-                <text
-                  x={x}
-                  y={y + 3}
-                  textAnchor="middle"
-                  fontSize="7"
-                  fill="#0D0720"
-                  fontWeight="bold"
-                >
-                  {u.initials}
-                </text>
-              </g>
-            )
-          })}
-
-          {otherOrbital.map((u, i) => {
-            const { x, y } = otherOrbitPos(i, otherOrbital.length)
-            return (
-              <g key={u.id}>
-                <circle cx={x} cy={y} r="11" fill="#B28FFF" />
-                <text
-                  x={x}
-                  y={y + 3}
-                  textAnchor="middle"
-                  fontSize="8"
-                  fill="#0D0720"
-                  fontWeight="bold"
-                >
-                  {u.initials}
-                </text>
-              </g>
-            )
-          })}
-
-          <g style={{ transition: 'all 1s linear' }}>
-            <circle cx={issX} cy={issY} r="16" fill="#FF78CA" opacity="0.25" />
-            <circle cx={issX} cy={issY} r="9" fill="#FF78CA" />
-            <text
-              x={issX}
-              y={issY + 3}
-              textAnchor="middle"
-              fontSize="7"
-              fill="#0D0720"
-              fontWeight="bold"
-            >
-              ISS
-            </text>
-          </g>
-        </svg>
-        <p className="mt-2 text-center font-mono text-[10px] text-white/40">
+        <p className="border-t border-white/10 bg-void/70 px-4 py-3 text-center font-mono text-[10px] text-white/40">
           Posição da ISS atualizada a cada 5s via wheretheiss.at
         </p>
       </Card>
@@ -142,6 +56,7 @@ export default function MapPage() {
               <p className="truncate text-sm font-semibold text-white">{u.name}</p>
               <p className="truncate font-mono text-[10px] text-white/50">{u.location}</p>
             </div>
+
             <UserTag type={u.type} />
           </Card>
         ))}
@@ -156,7 +71,9 @@ function StatusPill({ status }) {
     loading: { text: 'Conectando', cls: 'bg-white/10 text-white/60', dot: 'bg-white/40' },
     error: { text: 'Offline', cls: 'bg-reentry/15 text-reentry', dot: 'bg-reentry' },
   }
+
   const s = map[status] ?? map.loading
+
   return (
     <span
       className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${s.cls}`}

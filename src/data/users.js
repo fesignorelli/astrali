@@ -6,6 +6,9 @@ export const users = [
     type: 'orbital',
     role: 'Cmdt. — ISS Expedição 71',
     location: 'ISS · Módulo Columbus',
+    latitude: -12.4,
+    longitude: -46.8,
+    altitude: 420000,
     bio: 'Comandante a 408 km de altitude. Documentando a Terra de cima, um orbital por vez.',
     gamification: {
       level: 12,
@@ -24,6 +27,9 @@ export const users = [
     type: 'terrestrial',
     role: 'Observador de campo',
     location: 'Cuiabá, MT · Brasil',
+    latitude: -15.6014,
+    longitude: -56.0979,
+    altitude: 0,
     bio: 'Jornalismo cidadão e monitoramento ambiental no Centro-Oeste. Confirmo do chão o que vocês veem do céu.',
     gamification: {
       level: 7,
@@ -42,6 +48,9 @@ export const users = [
     type: 'orbital',
     role: 'Cientista — JAXA',
     location: 'ISS · Módulo Kibo',
+    latitude: 34.6873,
+    longitude: 135.5262,
+    altitude: 420000,
     bio: 'Pesquisa oceanográfica em microgravidade. Sensoriamento remoto do Pacífico.',
     gamification: {
       level: 10,
@@ -60,6 +69,10 @@ export const users = [
     type: 'terrestrial',
     role: 'Novo observador',
     location: 'São Paulo · Brasil',
+    latitude: -23.5505,
+    longitude: -46.6333,
+    altitude: 0,
+    isCurrentUser: true,
     bio: 'Começando minha jornada no ASTRALIS.',
     gamification: {
       level: 2,

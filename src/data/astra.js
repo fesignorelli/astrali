@@ -1,7 +1,3 @@
-// ASTRA — base de conhecimento do assistente-guia do ASTRALIS.
-// Cada entrada tem palavras-chave (para casar com a pergunta) e uma resposta.
-// Estrutura pensada para depois ser trocada por IA real sem mudar a interface.
-
 export const astraKnowledge = [
   {
     id: 'welcome',
@@ -11,14 +7,7 @@ export const astraKnowledge = [
   },
   {
     id: 'what_is',
-    keywords: [
-      'o que é',
-      'que é astralis',
-      'sobre',
-      'plataforma',
-      'rede social',
-      'funciona o astralis',
-    ],
+    keywords: ['o que é', 'que é astralis', 'sobre', 'plataforma', 'rede social', 'funciona o astralis'],
     answer:
       'O ASTRALIS é uma rede social que conecta quem está no espaço com quem está na Terra. Astronautas transmitem fotos, dados e descobertas em órbita, e pessoas no solo respondem com relatos locais — criando uma ponte entre o que se vê de cima e o que se vive embaixo.',
   },
@@ -36,32 +25,13 @@ export const astraKnowledge = [
   },
   {
     id: 'badges',
-    keywords: [
-      'badge',
-      'conquista',
-      'medalha',
-      'desbloquear',
-      'troféu',
-      'trofeu',
-      'insígnia',
-      'insignia',
-    ],
+    keywords: ['badge', 'conquista', 'medalha', 'desbloquear', 'troféu', 'trofeu', 'insígnia', 'insignia'],
     answer:
       'Conquistas são desbloqueadas automaticamente conforme você usa o ASTRALIS: sua primeira transmissão, sua décima curtida recebida, sua sequência de dias ativos... Cada uma aparece no seu Perfil e te notifica na hora. Já desbloqueou a "Primeira Órbita"?',
   },
   {
     id: 'map',
-    keywords: [
-      'mapa',
-      'orbital',
-      'iss',
-      'localização',
-      'localizacao',
-      'geolocalização',
-      'satélite',
-      'satelite',
-      'tempo real',
-    ],
+    keywords: ['mapa', 'orbital', 'iss', 'localização', 'localizacao', 'geolocalização', 'satélite', 'satelite', 'tempo real'],
     answer:
       'O Mapa Orbital mostra a posição REAL da Estação Espacial Internacional (ISS), atualizada a cada 5 segundos via dados de satélite ao vivo. Você vê latitude, longitude, altitude e velocidade reais — não é simulação!',
   },
@@ -103,11 +73,9 @@ export const astraKnowledge = [
   },
 ]
 
-// resposta padrão quando nada casa
 export const astraFallback =
   'Hmm, ainda não sei responder isso com detalhes, mas posso te explicar sobre: o Feed, as Missões, o Mapa Orbital, a Galeria, como ganhar XP e conquistas, ou os ODS da ONU. Sobre qual desses quer saber?'
 
-// passos do tour automático (primeiro acesso) — cada um aponta uma página
 export const astraTour = [
   {
     page: 'Feed',
@@ -120,14 +88,15 @@ export const astraTour = [
     text: 'Aqui astronautas e terráqueos trocam transmissões com fotos, dados e descobertas. Transmita algo e ganhe +50 XP!',
   },
   {
+    page: 'Feed',
+    openPanel: true,
+    title: 'Painel Orbital',
+    text: 'Aqui à direita você acompanha os ODS em destaque, as missões ativas e as tendências do momento. No celular, ele abre como um painel.',
+  },
+  {
     page: 'Mapa',
     title: 'Mapa Orbital ao vivo',
     text: 'Acompanhe a posição REAL da Estação Espacial Internacional, atualizada a cada 5 segundos via satélite. Não é simulação!',
-  },
-  {
-    page: 'Missões',
-    title: 'Explorador de Missões',
-    text: 'Veja as expedições ativas com linha do tempo e progresso. Se você é astronauta, seus dias de expedição contam aqui.',
   },
   {
     page: 'Galeria',
@@ -135,8 +104,23 @@ export const astraTour = [
     text: 'Todos os registros visuais reunidos — imagens da Terra vista do espaço e do solo, cada uma com seu contexto.',
   },
   {
+    page: 'Missões',
+    title: 'Explorador de Missões',
+    text: 'Veja as expedições ativas com linha do tempo e progresso. Se você é astronauta, seus dias de expedição contam aqui.',
+  },
+  {
     page: 'Perfil',
     title: 'Seu Perfil espacial',
     text: 'Acompanhe seu nível, XP, conquistas e reputação. Tudo sobe conforme você interage. Boa exploração! 🚀',
+  },
+  {
+    page: 'Alertas',
+    title: 'Central de Alertas',
+    text: 'Aqui chegam suas conquistas e notificações: cada XP ganho, subida de nível e badge desbloqueado fica registrado nesta linha do tempo.',
+  },
+  {
+    page: 'Salvos',
+    title: 'Transmissões salvas',
+    text: 'Tocou no marcador de um post? Ele fica guardado aqui, pronto para você reler quando quiser.',
   },
 ]

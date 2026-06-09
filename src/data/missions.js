@@ -29,6 +29,36 @@ export const missions = [
     ods: [9, 11],
     summary: 'Primeiros habitantes da base lunar — testes de infraestrutura.',
   },
+  {
+    id: 'm_amazonia',
+    name: 'Sentinela Amazônia',
+    crew: 2,
+    day: 45,
+    totalDays: 120,
+    status: 'active',
+    ods: [13, 11],
+    summary: 'Monitoramento de queimadas e desmatamento na Amazônia a partir da órbita.',
+  },
+  {
+    id: 'm_oceanos',
+    name: 'Observatório dos Oceanos',
+    crew: 3,
+    day: 60,
+    totalDays: 150,
+    status: 'active',
+    ods: [13, 9],
+    summary: 'Mapeamento de correntes marinhas e temperatura dos oceanos por satélite.',
+  },
+  {
+    id: 'm_starlink',
+    name: 'Rede Orbital Global',
+    crew: 5,
+    day: 20,
+    totalDays: 200,
+    status: 'active',
+    ods: [9, 11],
+    summary: 'Expansão da constelação de satélites para conectar regiões remotas da Terra.',
+  },
 ]
 
 export const ods = [

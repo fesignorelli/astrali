@@ -4,7 +4,6 @@ import UserTag from '../components/ui/UserTag'
 import { useApp } from '../context/AppContext'
 import { getUserById } from '../data/users'
 
-// GalleryPage — grade de imagens capturadas (posts que têm mídia).
 export default function GalleryPage() {
   const { posts } = useApp()
   const withMedia = posts.filter((p) => p.media)

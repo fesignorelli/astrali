@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react'
 
-// useISS — posição real da ISS via wheretheiss.at (HTTPS, sem chave).
-// Atualiza a cada `intervalMs`. Se a API falhar, mantém o último valor /
-// cai num fallback estático — a tela nunca quebra na apresentação.
-
 const ISS_URL = 'https://api.wheretheiss.at/v1/satellites/25544'
 
 const FALLBACK = {
@@ -16,8 +12,7 @@ const FALLBACK = {
 
 export function useISS(intervalMs = 5000) {
   const [data, setData] = useState(FALLBACK)
-  const [status, setStatus] = useState('loading') // loading | live | error
-
+  const [status, setStatus] = useState('loading') 
   useEffect(() => {
     let alive = true
 
@@ -37,7 +32,6 @@ export function useISS(intervalMs = 5000) {
         setStatus('live')
       } catch {
         if (!alive) return
-        // mantém o último dado válido; só marca erro se nunca chegou nada
         setStatus((prev) => (prev === 'live' ? 'live' : 'error'))
       }
     }
@@ -53,9 +47,6 @@ export function useISS(intervalMs = 5000) {
   return { iss: data, status }
 }
 
-// usePeopleInSpace — quantas pessoas estão no espaço agora.
-// open-notify é HTTP (pode dar mixed-content em produção HTTPS), então
-// tem fallback e o app continua funcionando se for bloqueado.
 export function usePeopleInSpace() {
   const [people, setPeople] = useState({ number: null, names: [], isFallback: true })
 

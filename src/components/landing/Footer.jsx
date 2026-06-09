@@ -5,7 +5,7 @@ export default function Footer({ onEnter }) {
     <footer className="border-t border-white/10 px-[8%] py-12">
       <div className="grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
-          <img src="/astralis-logo.png" alt="ASTRALIS" className="h-12 w-auto" />
+          <img src="/astralis-logo.png" alt="ASTRALIS" className="h-12 w-auto" href="/"/>
 
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
             Onde o espaço encontra a Terra em tempo real. Uma rede social que conecta quem observa

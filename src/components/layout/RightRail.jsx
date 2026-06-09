@@ -6,7 +6,6 @@ import { missions, ods } from '../../data/missions'
 import { trends } from '../../data/posts'
 import { Radar, X } from 'lucide-react'
 
-// Conteúdo do painel (reutilizado no desktop e no drawer mobile)
 function PanelContent() {
   return (
     <>
@@ -52,7 +51,6 @@ function PanelContent() {
 export default function RightRail() {
   const [open, setOpen] = useState(false)
 
-  // a ASTRA pode pedir para abrir/fechar o painel durante o tour
   useEffect(() => {
     const openPanel = () => setOpen(true)
     const closePanel = () => setOpen(false)
@@ -66,7 +64,6 @@ export default function RightRail() {
 
   return (
     <>
-      {/* DESKTOP — coluna fixa (lg+) */}
       <aside
         className="hidden w-80 shrink-0 flex-col gap-5 p-4 lg:flex"
         aria-label="Painel orbital"
@@ -78,7 +75,6 @@ export default function RightRail() {
         <PanelContent />
       </aside>
 
-      {/* MOBILE — botão flutuante para abrir o painel (some no lg+) */}
       <button
         onClick={() => setOpen(true)}
         aria-label="Abrir painel orbital"
@@ -88,7 +84,6 @@ export default function RightRail() {
         <Radar className="h-5 w-5" />
       </button>
 
-      {/* MOBILE — backdrop + drawer deslizante (some no lg+) */}
       {open && (
         <div
           className="fixed inset-0 z-40 bg-black/60 lg:hidden"

@@ -1,10 +1,16 @@
+import { CheckCircle2 } from 'lucide-react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import { odsColor } from '../lib/format'
 import { missions } from '../data/missions'
+import { useApp } from '../context/AppContext'
+import { useAuth } from '../context/AuthContext'
 
-// MissionsPage — explorador de missões. Timeline vertical com progresso e ODS.
 export default function MissionsPage() {
+  const { completeMission } = useApp()
+  const { user } = useAuth()
+  const completedIds = user?.gamification?.completedMissionIds ?? []
+
   return (
     <section className="mx-auto w-full">
       <header className="mb-6">
@@ -16,21 +22,27 @@ export default function MissionsPage() {
         </p>
       </header>
 
-      {/* timeline */}
       <ol className="relative border-l border-white/10 pl-6">
         {missions.map((m) => {
           const pct = Math.min(100, Math.round((m.day / m.totalDays) * 100))
+          const isDone = completedIds.includes(m.id)
           return (
             <li key={m.id} className="mb-8 last:mb-0">
-              {/* marcador */}
               <span
-                className="absolute -left-[7px] mt-1.5 h-3.5 w-3.5 rounded-full border-2 border-void bg-cosmos"
+                className={`absolute -left-[7px] mt-1.5 h-3.5 w-3.5 rounded-full border-2 border-void ${
+                  isDone ? 'bg-terra' : 'bg-cosmos'
+                }`}
                 aria-hidden="true"
               />
-              <Card className="p-5">
+              <Card className={`p-5 ${isDone ? 'border border-terra/30' : ''}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <p className="font-display text-lg font-bold text-white">{m.name}</p>
+                    <p className="flex items-center gap-2 font-display text-lg font-bold text-white">
+                      {m.name}
+                      {isDone && (
+                        <CheckCircle2 className="h-4 w-4 text-terra" aria-label="Concluída" />
+                      )}
+                    </p>
                     <p className="font-mono text-xs text-white/50">
                       {m.crew} astronautas · Dia {m.day} de {m.totalDays}
                     </p>
@@ -69,9 +81,20 @@ export default function MissionsPage() {
                 </div>
 
                 <div className="mt-4">
-                  <Button variant="secondary" size="sm">
-                    Acompanhar missão
-                  </Button>
+                  {isDone ? (
+                    <span className="inline-flex items-center gap-1.5 rounded-xl border border-terra/30 bg-terra/10 px-4 py-2 text-sm font-semibold text-terra">
+                      <CheckCircle2 className="h-4 w-4" />
+                      Missão concluída
+                    </span>
+                  ) : (
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => completeMission(m.id)}
+                    >
+                      Concluir missão
+                    </Button>
+                  )}
                 </div>
               </Card>
             </li>

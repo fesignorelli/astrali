@@ -1,8 +1,5 @@
 import { useEffect, useRef } from 'react'
 
-// StarField — campo de estrelas (canvas transparente).
-// Estrelas de tamanhos variados (algumas maiores com glow) + partículas
-// coloridas subindo devagar. Bolas maiores realçam o glassmorphism dos cards.
 export default function StarField() {
   const canvasRef = useRef(null)
 
@@ -22,7 +19,6 @@ export default function StarField() {
       const partCount = Math.min(20, Math.floor(area / 80000))
 
       stars = Array.from({ length: starCount }, () => {
-        // ~25% das estrelas são "grandes" (com glow), o resto pequenas
         const big = Math.random() < 0.25
         return {
           x: Math.random() * width,
@@ -35,11 +31,11 @@ export default function StarField() {
         }
       })
 
-      const colors = ['178,143,255', '255,120,202', '110,223,160'] // cosmos, aurora, terra
+      const colors = ['178,143,255', '255,120,202', '110,223,160'] 
       particles = Array.from({ length: partCount }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        r: Math.random() * 3 + 2, // bem maiores que antes
+        r: Math.random() * 3 + 2, 
         vy: -(Math.random() * 0.2 + 0.04),
         vx: (Math.random() - 0.5) * 0.1,
         alpha: Math.random() * 0.4 + 0.2,

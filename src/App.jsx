@@ -19,6 +19,14 @@ import SavedPage from './pages/SavedPage'
 
 function Shell() {
   const { user, ready } = useAuth()
+
+  const {
+    astraOpen,
+    setAstraOpen,
+    astraMessage,
+    setAstraMessage,
+  } = useApp()
+
   const [stage, setStage] = useState('landing')
   const [active, setActive] = useState('Feed')
   const [menuOpen, setMenuOpen] = useState(false)
@@ -31,29 +39,36 @@ function Shell() {
   }
 
   const navigate = (label) => {
-    const map = { 'Mapa Orbital': 'Mapa' }
-    setActive(map[label] ?? label)
+    setActive(label)
   }
+
   const showRail = active === 'Feed'
 
-  const renderPage = () => {
-    switch (active) {
-      case 'Mapa':
-        return <MapPage />
-      case 'Galeria':
-        return <GalleryPage />
-      case 'Missões':
-        return <MissionsPage />
-      case 'Perfil':
-        return <ProfilePage user={user} />
-      case 'Alertas':
-        return <AlertsPage />
-      case 'Salvos':
-        return <SavedPage />
-      default:
-        return <FeedPage />
-    }
+const renderPage = () => {
+  switch (active) {
+    case 'Mapa':
+    case 'Mapa Orbital':
+      return <MapPage />
+
+    case 'Galeria':
+      return <GalleryPage />
+
+    case 'Missões':
+      return <MissionsPage />
+
+    case 'Perfil':
+      return <ProfilePage user={user} />
+
+    case 'Alertas':
+      return <AlertsPage />
+
+    case 'Salvos':
+      return <SavedPage />
+
+    default:
+      return <FeedPage />
   }
+}
 
   return (
     <AppWithToasts>
@@ -70,12 +85,26 @@ function Shell() {
             onClose={() => setMenuOpen(false)}
           />
 
-          <main className="min-w-0 flex-1 px-4 py-8 md:ml-[22.5rem] md:px-8">{renderPage()}</main>
+          <main className="min-w-0 flex-1 px-4 py-8 md:ml-[22.5rem] md:px-8">
+            {renderPage()}
+          </main>
 
           {showRail && <RightRail />}
         </div>
       </div>
-      <Astra onNavigate={navigate} />
+
+      <Astra
+        onNavigate={navigate}
+        open={astraOpen}
+        onOpenChange={(value) => {
+          setAstraOpen(value)
+
+          if (!value) {
+            setAstraMessage(null)
+          }
+        }}
+        message={astraMessage}
+      />
     </AppWithToasts>
   )
 }
@@ -91,6 +120,7 @@ function AppWithToasts({ children }) {
 
 function ToastLayer() {
   const { toasts, dismissToast } = useApp()
+
   return <GameToast toasts={toasts} onDismiss={dismissToast} />
 }
 

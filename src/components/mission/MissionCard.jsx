@@ -1,6 +1,5 @@
 import Card from '../ui/Card'
 
-// MissionCard — missão ativa com barra de progresso (dia / total).
 export default function MissionCard({ mission }) {
   const pct = Math.min(100, Math.round((mission.day / mission.totalDays) * 100))
   return (

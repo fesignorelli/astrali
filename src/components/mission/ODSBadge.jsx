@@ -1,6 +1,5 @@
 import { odsColor } from '../../lib/format'
 
-// ODSBadge — selo numerado de um Objetivo de Desenvolvimento Sustentável.
 export default function ODSBadge({ number, label }) {
   return (
     <div className="flex items-center gap-3">

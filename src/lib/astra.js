@@ -1,7 +1,3 @@
-// ASTRA — base de conhecimento do assistente-guia do ASTRALIS.
-// Cada entrada tem palavras-chave (para casar com a pergunta) e uma resposta.
-// Estrutura pensada para depois ser trocada por IA real sem mudar a interface.
-
 export const astraKnowledge = [
   {
     id: 'welcome',
@@ -103,11 +99,9 @@ export const astraKnowledge = [
   },
 ]
 
-// resposta padrão quando nada casa
 export const astraFallback =
   'Hmm, ainda não sei responder isso com detalhes, mas posso te explicar sobre: o Feed, as Missões, o Mapa Orbital, a Galeria, como ganhar XP e conquistas, ou os ODS da ONU. Sobre qual desses quer saber?'
 
-// passos do tour automático (primeiro acesso) — cada um aponta uma página
 export const astraTour = [
   {
     page: 'Feed',
@@ -126,10 +120,10 @@ export const astraTour = [
     text: 'Aqui à direita você acompanha os ODS em destaque, as missões ativas e as tendências do momento. No celular, ele abre como um painel.',
   },
   {
-    page: 'Mapa',
-    title: 'Mapa Orbital ao vivo',
-    text: 'Acompanhe a posição REAL da Estação Espacial Internacional, atualizada a cada 5 segundos via satélite. Não é simulação!',
-  },
+  page: 'Mapa Orbital',
+  title: 'Mapa Orbital ao vivo',
+  text: 'Acompanhe a posição REAL da Estação Espacial Internacional, atualizada a cada 5 segundos via satélite. Não é simulação!',
+},
   {
     page: 'Missões',
     title: 'Explorador de Missões',
