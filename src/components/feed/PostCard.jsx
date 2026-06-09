@@ -20,11 +20,14 @@ export default function PostCard({ post, onLike }) {
   const [showComments, setShowComments] = useState(false)
   const [confirmDelete, setConfirmDelete] = useState(false)
 
-  const author =
-    getUserById(post.authorId) ||
+  const author = getUserById(post.authorId) ||
     post.author ||
-    (user && user.id === post.authorId ? user : null) ||
-    { name: 'Explorador', initials: '??', type: 'orbital', location: 'ASTRALIS' }
+    (user && user.id === post.authorId ? user : null) || {
+      name: 'Explorador',
+      initials: '??',
+      type: 'orbital',
+      location: 'ASTRALIS',
+    }
 
   const postComments = comments[post.id] || []
   const isSaved = saved.includes(post.id)
@@ -55,13 +58,18 @@ export default function PostCard({ post, onLike }) {
       </header>
 
       {post.media && (
-        <div className="mt-4"><PostMedia media={post.media} /></div>
+        <div className="mt-4">
+          <PostMedia media={post.media} />
+        </div>
       )}
 
       <p className="mt-4 leading-relaxed text-white/90">
         {post.text}{' '}
         {post.ods?.map((n) => (
-          <span key={n} className={`ml-1 inline-block rounded-md border px-1.5 py-0.5 align-middle font-mono text-[10px] ${odsColor(n)}`}>
+          <span
+            key={n}
+            className={`ml-1 inline-block rounded-md border px-1.5 py-0.5 align-middle font-mono text-[10px] ${odsColor(n)}`}
+          >
             ODS {n}
           </span>
         ))}
@@ -81,10 +89,7 @@ export default function PostCard({ post, onLike }) {
       </div>
 
       {showComments && (
-        <CommentSection
-          comments={postComments}
-          onAdd={(text) => addComment(post.id, text)}
-        />
+        <CommentSection comments={postComments} onAdd={(text) => addComment(post.id, text)} />
       )}
 
       {/* confirmação de exclusão */}
@@ -95,15 +100,14 @@ export default function PostCard({ post, onLike }) {
             Apagar esta transmissão? Esta ação não pode ser desfeita.
           </p>
           <div className="mt-3 flex gap-2">
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => setConfirmDelete(false)}
-            >
+            <Button variant="secondary" size="sm" onClick={() => setConfirmDelete(false)}>
               Cancelar
             </Button>
             <button
-              onClick={() => { deletePost(post.id); setConfirmDelete(false) }}
+              onClick={() => {
+                deletePost(post.id)
+                setConfirmDelete(false)
+              }}
               className="inline-flex items-center gap-1.5 rounded-xl bg-reentry px-4 py-2 text-sm font-semibold text-void transition hover:opacity-90"
             >
               <Trash2 className="h-4 w-4" />

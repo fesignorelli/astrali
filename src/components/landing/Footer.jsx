@@ -8,7 +8,8 @@ export default function Footer({ onEnter }) {
           <img src="/astralis-logo.png" alt="ASTRALIS" className="h-12 w-auto" />
 
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
-            Onde o espaço encontra a Terra em tempo real. Uma rede social que conecta quem observa de cima com quem vive embaixo.
+            Onde o espaço encontra a Terra em tempo real. Uma rede social que conecta quem observa
+            de cima com quem vive embaixo.
           </p>
 
           <div className="mt-5 flex gap-3">
