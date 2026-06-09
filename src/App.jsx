@@ -78,7 +78,7 @@ function Shell() {
       <Astra onNavigate={navigate} />
     </AppWithToasts>
   )
-}r
+}
 
 function AppWithToasts({ children }) {
   return (
