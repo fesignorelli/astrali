@@ -67,7 +67,10 @@ export default function RightRail() {
   return (
     <>
       {/* DESKTOP — coluna fixa (lg+) */}
-      <aside className="hidden w-80 shrink-0 flex-col gap-5 p-4 lg:flex" aria-label="Painel orbital">
+      <aside
+        className="hidden w-80 shrink-0 flex-col gap-5 p-4 lg:flex"
+        aria-label="Painel orbital"
+      >
         <div className="flex items-center gap-2 px-1">
           <Radar className="h-5 w-5 text-cosmos" aria-hidden="true" />
           <h2 className="font-display text-lg font-black text-white">Painel orbital</h2>

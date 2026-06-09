@@ -35,7 +35,6 @@ export default function Topbar({ active = 'Feed', onNavigate, onMenu }) {
       </nav>
 
       <div className="ml-auto flex items-center gap-2 md:gap-3">
-        
         {user && (
           <>
             <button

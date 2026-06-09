@@ -3,6 +3,10 @@ import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import Reveal from '../components/ui/Reveal'
 import CesiumGlobe from '../components/map/CesiumGlobe'
+import ODSSection from '../components/landing/ODSSection'
+import HowItWorks from '../components/landing/HowItWorks'
+import SpaceEconomy from '../components/landing/SpaceEconomy'
+import Footer from '../components/landing/Footer'
 import { Satellite, Globe2, Users, Sparkles } from 'lucide-react'
 
 export default function LandingPage({ onEnter }) {
@@ -16,6 +20,12 @@ export default function LandingPage({ onEnter }) {
         <nav className="hidden gap-7 text-sm text-white/70 md:flex">
           <a href="#features" className="hover:text-white">
             Diferenciais
+          </a>
+          <a href="#how" className="hover:text-white">
+            Como funciona
+          </a>
+          <a href="#ods" className="hover:text-white">
+            ODS
           </a>
           <a href="#globe" className="hover:text-white">
             Mapa orbital
@@ -81,7 +91,9 @@ export default function LandingPage({ onEnter }) {
 
       <section id="features" className="px-[8%] py-16">
         <Reveal>
-          <h2 className="mb-8 font-display text-3xl font-black">O que torna o ASTRALIS diferente?</h2>
+          <h2 className="mb-8 font-display text-3xl font-black">
+            O que torna o ASTRALIS diferente?
+          </h2>
         </Reveal>
         <div className="grid gap-5 md:grid-cols-3">
           <Reveal delay={0}>
@@ -107,6 +119,10 @@ export default function LandingPage({ onEnter }) {
           </Reveal>
         </div>
       </section>
+
+      <HowItWorks />
+
+      <SpaceEconomy />
 
       <Reveal>
         <section className="px-[8%] py-16">
@@ -157,6 +173,8 @@ export default function LandingPage({ onEnter }) {
         </section>
       </Reveal>
 
+      <ODSSection />
+
       <Reveal>
         <section id="globe" className="px-[8%] pb-24">
           <h2 className="mb-2 font-display text-3xl font-black">Mapa orbital ao vivo</h2>
@@ -180,14 +198,10 @@ export default function LandingPage({ onEnter }) {
               />
             </div>
           </div>
-
-          <div className="mt-10 text-center">
-            <Button variant="primary" size="lg" onClick={onEnter}>
-              Entrar no ASTRALIS
-            </Button>
-          </div>
         </section>
       </Reveal>
+
+      <Footer onEnter={onEnter} />
     </div>
   )
 }

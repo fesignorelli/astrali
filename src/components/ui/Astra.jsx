@@ -10,7 +10,11 @@ export default function Astra({ onNavigate }) {
 
   useEffect(() => {
     let seen = false
-    try { seen = localStorage.getItem(SEEN_KEY) === '1' } catch { /* ignora */ }
+    try {
+      seen = localStorage.getItem(SEEN_KEY) === '1'
+    } catch {
+      /* ignora */
+    }
     if (!seen) setActive(true)
   }, [])
 
@@ -28,7 +32,11 @@ export default function Astra({ onNavigate }) {
   const finish = () => {
     setActive(false)
     setStep(0)
-    try { localStorage.setItem(SEEN_KEY, '1') } catch { /* ignora */ }
+    try {
+      localStorage.setItem(SEEN_KEY, '1')
+    } catch {
+      /* ignora */
+    }
     window.dispatchEvent(new CustomEvent('astra:closePanel'))
     onNavigate?.('Feed')
   }
@@ -37,8 +45,13 @@ export default function Astra({ onNavigate }) {
     if (step < astraTour.length - 1) setStep((s) => s + 1)
     else finish()
   }
-  const back = () => { if (step > 0) setStep((s) => s - 1) }
-  const startTour = () => { setStep(0); setActive(true) }
+  const back = () => {
+    if (step > 0) setStep((s) => s - 1)
+  }
+  const startTour = () => {
+    setStep(0)
+    setActive(true)
+  }
 
   // ---- BOTÃO (tour inativo) ----
   if (!active) {
@@ -158,7 +171,10 @@ export default function Astra({ onNavigate }) {
           src="/astra.png"
           alt="ASTRA, sua guia no ASTRALIS"
           className="order-1 h-28 w-auto drop-shadow-2xl sm:order-2 sm:h-60 md:h-72"
-          style={{ filter: 'drop-shadow(0 0 30px rgba(178,143,255,0.45))', transform: 'scaleX(-1)' }}
+          style={{
+            filter: 'drop-shadow(0 0 30px rgba(178,143,255,0.45))',
+            transform: 'scaleX(-1)',
+          }}
         />
       </div>
     </>
