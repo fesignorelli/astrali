@@ -91,7 +91,7 @@ A gamificação foi pensada para incentivar a participação, a interação e a 
 A ASTRA é a assistente virtual do ASTRALIS. Ela guia o usuário no primeiro acesso, apresenta as principais áreas da plataforma e responde dúvidas sobre funcionalidades como feed, mapa orbital, missões, galeria, XP e conquistas.
 
 <p align="center">
-  <img src="../astralis-project/src/assets/apresentacao-astra-ia.png" alt="ASTRA" width="100%" />
+  <img src="/public/apresentacao-astra-ia.png" alt="ASTRA" width="100%" />
 </p>
 ## 🌍 Conexão com os ODS da ONU
 
