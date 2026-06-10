@@ -214,13 +214,13 @@ http://localhost:5173
 
 O projeto está publicado online em:
 
-**Link do deploy:** [INSERIR_LINK_DO_DEPLOY](https://astrali.vercel.app/)
+**Link do deploy:** [Astralis](https://astrali.vercel.app/)
 
 ---
 
 ## 📁 Repositório
 
-**GitHub:** [INSERIR_LINK_DO_REPOSITORIO](https://github.com/fesignorelli/astrali)
+**GitHub:** [Github Astrali](https://github.com/fesignorelli/astrali)
 
 ---
 
