@@ -181,7 +181,7 @@ A API fornece dados como latitude, longitude, altitude e velocidade da ISS, perm
 Clone o repositório:
 
 ```bash
-git clone LINK_DO_REPOSITORIO
+git clone https://github.com/fesignorelli/astrali.git
 ```
 
 Acesse a pasta do projeto:
@@ -214,13 +214,13 @@ http://localhost:5173
 
 O projeto está publicado online em:
 
-**Link do deploy:** INSERIR_LINK_DO_DEPLOY
+**Link do deploy:** [INSERIR_LINK_DO_DEPLOY](https://astrali.vercel.app/)
 
 ---
 
 ## 📁 Repositório
 
-**GitHub:** INSERIR_LINK_DO_REPOSITORIO
+**GitHub:** [INSERIR_LINK_DO_REPOSITORIO](https://github.com/fesignorelli/astrali)
 
 ---
 
@@ -234,11 +234,11 @@ O projeto está publicado online em:
 
 Adicionar os integrantes em ordem alfabética:
 
-* Nome completo — RM
-* Nome completo — RM
-* Nome completo — RM
-* Nome completo — RM
-* Nome completo — RM
+* Caroline Teixeira Silva
+* Fernanda Signorelli Pereira De Oliveira
+* Lais Miharu Amano
+* Leonardo Ribeiro Souza
+* Manuella De Oliveira Francisco Moreira
 
 ---
 
