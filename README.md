@@ -226,7 +226,7 @@ O projeto está publicado online em:
 
 ## 🎥 Vídeo-pitch
 
-**Link do vídeo:** INSERIR_LINK_DO_VIDEO
+**Link do vídeo:** [Youtube](https://youtu.be/IoZCWGBUCKw?si=3b_mWTFl9D2xdkSh)
 
 ---
 
